@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJDIR = ./obj/
 SRCDIR = ./
 
-SRC =  megaphone.cpp
+SRC =  Account.cpp test.cpp
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
