@@ -6,12 +6,14 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 14:12:49 by algultse          #+#    #+#             */
-/*   Updated: 2023/10/01 13:57:09 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:36:17 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cstdlib>
 #include <cctype>
+#include <string>
 
 // namespace STD {
 // 	void NewTest2() {
@@ -121,9 +123,10 @@ int	main(int argc, char **argv)
 	}
 	for (int i = 1; i < argc && argv[i]; i++)
 	{
-		for (size_t j = 0; j < std::string(argv[i]).length(); j++)
-			std::cout << (char)std::toupper(argv[i][j]);
-		if (i < argc - 1 && std::string(argv[i]).back() != ' ' && std::string(argv[i + 1]).front() != ' ')
+		std::string	str = argv[i];
+		for (size_t j = 0; j < str.length(); j++)
+			std::cout << (char)std::toupper(str[j]);
+		if (i < argc - 1 && str[str.length() -1] != ' ' && std::string(argv[i + 1])[0] != ' ')
 			std::cout << " ";
 	}
 	std::cout << std::endl;

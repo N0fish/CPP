@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:01:12 by algultse          #+#    #+#             */
-/*   Updated: 2023/10/08 16:30:22 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:38:57 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,14 @@ static int	getValidatedIndex(const std::string& input, int maxIndex)
 	}
 	if (isValidNumber(input))
 	{
-		int index = std::stoi(input) - 1;
+		std::istringstream	iss(input);
+		int	index;
+		if (!(iss >> index) || !iss.eof())
+		{
+			std::cout << "Invalid index! Please use a number next time." << std::endl;
+			return (-1);
+		}
+		index = -1;
 		if (index >= 0 && index < maxIndex)
 			return (index);
 		else

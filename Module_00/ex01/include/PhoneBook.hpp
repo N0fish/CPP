@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:06:44 by algultse          #+#    #+#             */
-/*   Updated: 2023/10/01 15:23:26 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:37:03 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <iomanip>
+# include <cstdlib>
+# include <sstream>
 # include "Contact.hpp"
 # include "utils.hpp"
 
