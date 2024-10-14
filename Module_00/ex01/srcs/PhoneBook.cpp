@@ -161,13 +161,13 @@ static int	getValidatedIndex(const std::string& input, int maxIndex)
 			std::cout << "Invalid index! Please use a number next time." << std::endl;
 			return (-1);
 		}
-		index = -1;
+		index -= 1;
 		if (index >= 0 && index < maxIndex)
 			return (index);
 		else
 		{
-			std::cout	<< "Invalid index! Please enter a number between 1 and " 
-						<< maxIndex << "." 
+			std::cout	<< "Invalid index! Please enter a number between 1 and "
+						<< maxIndex << "."
 						<< std::endl;
 			return (-1);
 		}
