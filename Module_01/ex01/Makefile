@@ -6,7 +6,7 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 18:12:16 by algultse          #+#    #+#              #
-#    Updated: 2024/10/14 18:34:19 by algultse         ###   ########.fr        #
+#    Updated: 2024/10/20 20:54:19 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJDIR = ./obj/
 SRCDIR = ./srcs/
 INCDIR = ./include/
 
-SRC = Zombie.cpp zombieHorde.cpp main.cpp 
+SRC = Zombie.cpp zombieHorde.cpp getZombieData.cpp main.cpp 
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
