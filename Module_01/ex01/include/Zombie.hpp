@@ -17,6 +17,7 @@
 # include <string>
 # include <sstream>
 # include <cctype>
+# include <cstdlib>
 
 # define NC "\e[0m"
 # define RED "\e[31m"
