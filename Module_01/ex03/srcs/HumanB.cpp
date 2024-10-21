@@ -28,11 +28,15 @@ HumanB::~HumanB() {
 
 void	HumanB::attack() const
 {
-	std::cout	<< HumanB::_name << " attacks with their "
-				<< HumanB::_weapon->getType() << "."
-				<< std::endl;
+	std::cout	<< HumanB::_name << " attacks with their ";
+	if (HumanB::_weapon != NULL && HumanB::_weapon->getType() != "")
+		std::cout	<< HumanB::_weapon->getType();
+	else
+		std::cout	<< "bare hands";
+	std::cout	 << "!" << std::endl;
 }
 
 void	HumanB::setWeapon(Weapon& bWeapon) {
-	HumanB::_weapon = &bWeapon;
+	(void)&bWeapon;
+	HumanB::_weapon = NULL;
 }

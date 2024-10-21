@@ -30,7 +30,10 @@ HumanA::~HumanA() {
 
 void	HumanA::attack() const
 {
-	std::cout	<< HumanA::_name << " attacks with their "
-				<< HumanA::_weapon.getType() << "."
-				<< std::endl;
+	std::cout	<< HumanA::_name << " attacks with their ";
+	if (_weapon.getType().empty())
+		std::cout	<< "bare hands!";
+	else
+		std::cout	<< HumanA::_weapon.getType() << ".";
+	std::cout	<< std::endl;
 }
