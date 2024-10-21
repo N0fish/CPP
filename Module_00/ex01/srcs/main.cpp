@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 1)
 	{
-		std::cout	<< "Error: " << std::string(argv[0]) 
+		std::cerr	<< "Error: " << std::string(argv[0]) 
 					<< " needs no arguments from you" 
 					<< std::endl;
 		return (1);

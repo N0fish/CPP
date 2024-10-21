@@ -37,6 +37,5 @@ void	HumanB::attack() const
 }
 
 void	HumanB::setWeapon(Weapon& bWeapon) {
-	(void)&bWeapon;
-	HumanB::_weapon = NULL;
+	HumanB::_weapon = &bWeapon;
 }

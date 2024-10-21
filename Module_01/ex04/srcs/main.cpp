@@ -11,14 +11,24 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <fstream>
+
+#define RED "\e[31m"
+
+void	checkArguments(int argc, char **argv)
+{
+	if (argc != 4)
+		return ;
+	std::cerr	<< RED
+				<< "Utilisation : " << std::string(argv[0])
+				<< " <nom_fichier> <sous_chaine_a_remplacer> <remplacement>"
+				<< std::endl;
+	exit(1);
+}
 
 int	main(int argc, char **argv)
 {
-	if (argc != 1) {
-		std::cout	<< "Error: " << std::string(argv[0]) 
-					<< " needs no arguments from you" 
-					<< std::endl;
-		return (1);
-	}
+	checkArguments(argc, argv);
+
 	return (0);
 }
