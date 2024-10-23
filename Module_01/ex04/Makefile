@@ -6,20 +6,19 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 18:12:16 by algultse          #+#    #+#              #
-#    Updated: 2024/10/14 18:34:19 by algultse         ###   ########.fr        #
+#    Updated: 2024/10/22 16:23:43 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = sed_is_for_losers
+NAME = SedIsForLosers
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJDIR = ./obj/
 SRCDIR = ./srcs/
-INCDIR = ./include/
 
-SRC = Weapon.cpp HumanA.cpp HumanB.cpp main.cpp 
+SRC = main.cpp 
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
@@ -29,7 +28,7 @@ $(NAME): $(OBJS)
 
 $(OBJDIR)%.o: $(SRCDIR)%.cpp
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJDIR)
