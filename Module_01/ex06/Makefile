@@ -6,11 +6,11 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 18:37:06 by algultse          #+#    #+#              #
-#    Updated: 2024/10/14 18:45:10 by algultse         ###   ########.fr        #
+#    Updated: 2024/10/24 19:19:09 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = harlFilter
+NAME = HarlFilter
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98

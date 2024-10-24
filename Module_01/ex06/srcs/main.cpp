@@ -5,20 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 18:37:05 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/14 20:55:34 by algultse         ###   ########.fr       */
+/*   Created: 2024/10/15 10:20:15 by algultse          #+#    #+#             */
+/*   Updated: 2024/10/24 21:31:34 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Harl.hpp"
+
+static void	checkArguments(int argc, char **argv)
+{
+	if (argc == 2)
+		return ;
+	std::cerr	<< PURPLE
+				<< "Error! Usage: " << std::string(argv[0])
+				<< " [DEBUG|INFO|WARNING|ERROR]"
+				<< std::endl;
+	exit(EXIT_FAILURE);
+}
 
 int	main(int argc, char **argv)
 {
-	if (argc != 1) {
-		std::cout	<< "Error: " << std::string(argv[0]) 
-					<< " needs no arguments from you" 
-					<< std::endl;
-		return (1);
-	}
-	return (0);
+	checkArguments(argc, argv);
+
+	Harl harl;
+	harl.complain(argv[1]);
+	return (EXIT_SUCCESS);
 }
