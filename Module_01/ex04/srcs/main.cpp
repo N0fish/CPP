@@ -6,16 +6,18 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:31:34 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/23 22:29:02 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:44:31 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 
 #define RED "\e[31m"
 #define YELLOW "\e[33m"
+#define RESET "\e[0m"
 
 static std::string	replaceInLine(const std::string& line, const std::string& s1, const std::string& s2)
 {
@@ -40,7 +42,7 @@ static bool	processFile(const std::string& inFilename, const std::string& s1, co
 	if (!outFile.is_open()) {
 		std::cerr	<< RED
 					<< "Error: Cannot not create file " << outFilename
-					<< std::endl;
+					<< RESET << std::endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -48,18 +50,18 @@ static bool	processFile(const std::string& inFilename, const std::string& s1, co
 	if (!inFile.is_open()) {
 		std::cerr	<< RED
 					<< "Error: Cannot not open file " << inFilename
-					<< std::endl;
+					<< RESET << std::endl;
 		status = false;
 	}
 	if (inFile.peek() == std::ifstream::traits_type::eof() && status)
 		std::cout	<< YELLOW
 					<< "The " << inFilename << " is empty. Nothing to replace"
-					<< std::endl;
+					<< RESET << std::endl;
 
 	if (s1.empty() && status) {
 		std::cout	<< RED 
 					<< "Error: first Regular Expression may not be empty" 
-					<< std::endl;
+					<< RESET << std::endl;
 		status = false;
 	}
 
@@ -84,7 +86,7 @@ static void	checkArguments(int argc, char **argv)
 	std::cerr	<< RED
 				<< "Utilisation: " << std::string(argv[0])
 				<< " <nom_fichier> <sous_chaine_a_remplacer> <remplacement>"
-				<< std::endl;
+				<< RESET << std::endl;
 	exit(EXIT_FAILURE);
 }
 

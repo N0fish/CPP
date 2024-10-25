@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 20:16:04 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/20 21:29:22 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:29:35 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,31 @@ static int	getValidatedNumber(const std::string& request)
 	}
 }
 
+static bool	isValidChar(const std::string& str)
+{
+	if (str.empty())
+		return (false);
+	for (size_t i = 0; i < str.length(); ++i)
+		if (!std::isalpha(str[i]))
+			return (false);
+	return (true);
+}
+
+static std::string	getValidatedChar(const std::string& request)
+{
+	while(true)
+	{
+		std::string input = getInput(request);
+		if (isValidChar(input))
+			return (input);
+	}
+}
+
 void	getZombieData(int& N, std::string& name)
 {
 	std::cout	<< PURPLE << "Hello!" << NC << std::endl;
 
 	N = getValidatedNumber("Enter the number of zombies > ");
-	std::cout << std::endl;
-
-	while (true)
-	{
-		name = getInput("Enter the zombie's name > ");
-		if (!name.empty())
-			break ;
-	}
+	std::cout	<< std::endl;
+	name = getValidatedChar("Enter the zombie's name > ");
 }

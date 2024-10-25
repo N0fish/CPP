@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:23:25 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/23 21:27:10 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:55:32 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <fstream>
 # include <string>
+# include <cstdlib>
 
 # define RESET "\e[0m"
 # define RED "\e[31m"

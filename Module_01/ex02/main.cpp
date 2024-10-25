@@ -6,12 +6,13 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:23:26 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/21 17:43:27 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:39:03 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 
 #define NC "\e[0m"
 #define RED "\e[31m"

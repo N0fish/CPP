@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:20:15 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/24 21:31:34 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:56:17 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	checkArguments(int argc, char **argv)
 	std::cerr	<< PURPLE
 				<< "Error! Usage: " << std::string(argv[0])
 				<< " [DEBUG|INFO|WARNING|ERROR]"
-				<< std::endl;
+				<< RESET << std::endl;
 	exit(EXIT_FAILURE);
 }
 

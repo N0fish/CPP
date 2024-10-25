@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 20:22:06 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/24 19:19:45 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:53:45 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	checkArguments(int argc, char **argv)
 	std::cerr	<< PURPLE
 				<< "Error: " << std::string(argv[0])
 				<< " needs no arguments from you"
-				<< std::endl;
+				<< RESET << std::endl;
 	exit(EXIT_FAILURE);
 }
 
