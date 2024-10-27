@@ -53,7 +53,7 @@ void	Harl::invalid( void ) {
 				<< std::endl;
 }
 
-void Harl::doAction(Actions actions) {
+void	Harl::doAction(t_actions actions) {
 	switch (actions) {
 		case DEBUG:
 			this->debug();
@@ -71,11 +71,11 @@ void Harl::doAction(Actions actions) {
 
 void	Harl::complain( std::string level )
 {
-	Actions	actions = NONE;
+	t_actions	actions = NONE;
 
 	for (int i = 0; i < 4; i++) {
 		if (levels[i] == level) {
-			actions = (Actions)i;
+			actions = (t_actions)i;
 			break ;
 		}
 	}

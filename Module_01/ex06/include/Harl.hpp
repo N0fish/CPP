@@ -26,13 +26,13 @@
 # define PURPLE "\e[35m"
 # define CYAN "\e[36m"
 
-typedef enum Actions {
+typedef enum e_actions {
 	NONE = -1,
 	DEBUG,
 	INFO,
 	WARNING,
 	ERROR
-}			Actions;
+}			t_actions;
 
 class Harl {
 	private:
@@ -44,7 +44,7 @@ class Harl {
 		void	error( void );
 		void	invalid( void );
 
-		void	doAction(Actions);
+		void	doAction(t_actions);
 
 	public:
 		Harl();

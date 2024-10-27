@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:54:46 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/24 22:13:04 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/27 22:35:04 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,21 @@
 
 class Fixed {
 	private:
+		int					_value;
+		static const int	_fractionalBits; /* the number of fractional bits. It will always be 8 */
 
 	public:
 		Fixed();
+		Fixed( const Fixed &other ); /* copy constructor */
+
+		Fixed	&operator=( const Fixed &rhs ); /* assignment operator, which assign
+    	values between two instances of the same class */
+
 		~Fixed();
+
+		void	setRawBits( int const raw );
+
+		int		getRawBits( void ) const;
 };
 
 #endif
