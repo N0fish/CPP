@@ -12,21 +12,8 @@
 
 #include "Fixed.hpp"
 
-static void	checkArguments(int argc, char **argv)
+int	main( void )
 {
-	if (argc == 1)
-		return ;
-	std::cerr	<< RED
-				<< "Error: " << std::string(argv[0])
-				<< " needs no arguments from you"
-				<< RESET << std::endl;
-	exit(EXIT_FAILURE);
-}
-
-int	main(int argc, char **argv)
-{
-	checkArguments(argc, argv);
-
 	Fixed	a;
 	Fixed	b( a );
 	Fixed	c;

@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:54:46 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/27 22:35:04 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:40:04 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define BLUE "\e[34m"
 # define PURPLE "\e[35m"
 # define CYAN "\e[36m"
+# define BLACK "\e[30m"
 
 class Fixed {
 	private:
@@ -40,7 +41,6 @@ class Fixed {
 		~Fixed();
 
 		void	setRawBits( int const raw );
-
 		int		getRawBits( void ) const;
 };
 
