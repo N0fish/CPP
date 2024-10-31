@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:54:46 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/24 22:13:04 by algultse         ###   ########.fr       */
+/*   Updated: 2024/10/29 20:05:04 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <cmath>
 
 # define RESET "\e[0m"
-# define RED "\e[31m"
-# define GREEN "\e[32m"
 # define YELLOW "\e[33m"
 # define BLUE "\e[34m"
 # define PURPLE "\e[35m"
@@ -28,17 +26,6 @@
 # define BLACK "\e[30m"
 
 # define BOLD "\e[1m"
-# define UNDERLINE "\e[4m"
-# define INVERSE "\e[7m"
-
-# define BG_BLACK "\e[40m"
-# define BG_RED "\e[41m"
-# define BG_GREEN "\e[42m"
-# define BG_YELLOW "\e[43m"
-# define BG_BLUE "\e[44m"
-# define BG_PURPLE "\e[45m"
-# define BG_CYAN "\e[46m"
-# define BG_WHITE "\e[47m"
 
 class Fixed {
 	private:
