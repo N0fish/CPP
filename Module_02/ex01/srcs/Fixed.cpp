@@ -14,21 +14,21 @@
 
 const int	Fixed::_fractionalBits = 8;
 
-Fixed::Fixed() : _value(0) {
+Fixed::Fixed() : _value( 0 ) {
 	std::cout	<< PURPLE "Default"
 				BLACK " constructor called" RESET
 				<< std::endl;
 	return ;
 }
 
-Fixed::Fixed( int const n ) : _value(n << _fractionalBits) {
+Fixed::Fixed( int const n ) : _value( n << _fractionalBits ) {
 	std::cout	<< BOLD "Int" RESET
 				BLACK " constructor called" RESET
 				<< std::endl;
 	return ;
 }
 
-Fixed::Fixed( float const n ) : _value(roundf(n * (1 << _fractionalBits))) {
+Fixed::Fixed( float const n ) : _value( roundf(n * (1 << _fractionalBits)) ) {
 	std::cout	<< BOLD "Float" RESET
 				BLACK " constructor called" RESET
 				<< std::endl;

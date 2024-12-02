@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   Colors.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 22:04:32 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/24 22:05:12 by algultse         ###   ########.fr       */
+/*   Created: 2024/10/24 22:12:40 by algultse          #+#    #+#             */
+/*   Updated: 2024/10/24 22:13:04 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
-
-# include <iostream>
-# include <fstream>
-# include <string>
+#ifndef COLORS_HPP
+# define COLORS_HPP
 
 # define RESET "\e[0m"
 # define RED "\e[31m"
@@ -24,26 +20,19 @@
 # define BLUE "\e[34m"
 # define PURPLE "\e[35m"
 # define CYAN "\e[36m"
+# define BLACK "\e[30m"
 
 # define BOLD "\e[1m"
 # define UNDERLINE "\e[4m"
 # define INVERSE "\e[7m"
 
-# define BG_BLACK "\e[40m"
-# define BG_RED "\e[41m"
-# define BG_GREEN "\e[42m"
-# define BG_YELLOW "\e[43m"
-# define BG_BLUE "\e[44m"
-# define BG_PURPLE "\e[45m"
-# define BG_CYAN "\e[46m"
-# define BG_WHITE "\e[47m"
+class Fixed;
 
-class Fixed {
-	private:
-
-	public:
-		Fixed();
-		~Fixed();
-};
+//test
+void	testComparisonOperators(const Fixed &a, const Fixed &b);
+void	testArithmeticOperators(const Fixed &a, const Fixed &b);
+void	testIncrementDecrement(Fixed &a);
+void	testIncrementDecrement(const Fixed &b);
+void	testMinMax(const Fixed &a, const Fixed &b);
 
 #endif

@@ -18,28 +18,7 @@
 # include <string>
 # include <cmath>
 # include <climits>
-
-# define RESET "\e[0m"
-# define RED "\e[31m"
-# define GREEN "\e[32m"
-# define YELLOW "\e[33m"
-# define BLUE "\e[34m"
-# define PURPLE "\e[35m"
-# define CYAN "\e[36m"
-# define BLACK "\e[30m"
-
-# define BOLD "\e[1m"
-# define UNDERLINE "\e[4m"
-# define INVERSE "\e[7m"
-
-# define BG_BLACK "\e[40m"
-# define BG_RED "\e[41m"
-# define BG_GREEN "\e[42m"
-# define BG_YELLOW "\e[43m"
-# define BG_BLUE "\e[44m"
-# define BG_PURPLE "\e[45m"
-# define BG_CYAN "\e[46m"
-# define BG_WHITE "\e[47m"
+# include "Colors.hpp"
 
 class Fixed {
 	private:
@@ -51,16 +30,37 @@ class Fixed {
 		Fixed( int const n );
 		Fixed( float const n );
 		Fixed( const Fixed &other );
+		~Fixed();
 
 		Fixed	&operator=( const Fixed &rhs );
 
-		~Fixed();
+		bool	operator>( const Fixed &rhs ) const;
+		bool	operator<( const Fixed &rhs ) const;
+		bool	operator>=( const Fixed &rhs ) const;
+		bool	operator<=( const Fixed &rhs ) const;
+		bool	operator==( const Fixed &rhs ) const;
+		bool	operator!=( const Fixed &rhs ) const;
+
+		Fixed	operator+( Fixed const &rhs ) const;
+		Fixed	operator-( Fixed const &rhs ) const;
+		Fixed	operator*( Fixed const &rhs ) const;
+		Fixed	operator/( Fixed const &rhs ) const;
+
+		Fixed	&operator++( void );
+		Fixed	operator++( int	);
+		Fixed	&operator--( void );
+		Fixed	operator--( int );
 
 		void	setRawBits( int const raw );
 		int		getRawBits( void ) const;
 
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
+
+		static Fixed		&min(Fixed &a, Fixed &b);
+		static const Fixed	&min(const Fixed &a, const Fixed &b);
+		static Fixed		&max(Fixed &a, Fixed &b);
+		static const Fixed	&max(const Fixed &a, const Fixed &b);
 };
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &fixed);

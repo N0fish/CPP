@@ -23,6 +23,7 @@ Fixed::Fixed() : _value(0) {
 Fixed::Fixed( const Fixed &other ) : _value(other._value) {
 	std::cout	<< YELLOW "Copy constructor" RESET " called"
 				<< std::endl;
+	return ;
 }
 
 Fixed::~Fixed() {

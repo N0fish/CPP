@@ -36,7 +36,7 @@ class Fixed {
 		Fixed( const Fixed &other ); /* copy constructor */
 
 		Fixed	&operator=( const Fixed &rhs ); /* assignment operator, which assign
-    	values between two instances of the same class */
+		values between two instances of the same class */
 
 		~Fixed();
 
