@@ -6,7 +6,7 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 15:35:03 by algultse          #+#    #+#              #
-#    Updated: 2024/12/04 15:55:57 by algultse         ###   ########.fr        #
+#    Updated: 2024/12/05 20:07:23 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJDIR = ./obj/
 SRCDIR = ./srcs/
 INCDIR = ./include/
 
-SRC = ClapTrap.cpp ScavTrap.cpp main.cpp 
+SRC = ClapTrap.cpp ScavTrap.cpp test.cpp main.cpp 
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)

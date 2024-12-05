@@ -10,13 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPRTAP_HPP
-# define CLAPRTAP_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 # include <string>
 # include <iostream>
 # include <fstream>
 # include "Colors.hpp"
+
+# define CLAPTRAP_DEFAULT_HIT_POINTS 10
+# define CLAPTRAP_DEFAULT_ENERGY_POINTS 10
+# define CLAPTRAP_DEFAULT_ATTACK_DAMAGE 0
 
 class ClapTrap {
 	private:

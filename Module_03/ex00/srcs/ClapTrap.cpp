@@ -17,9 +17,9 @@
 /* -------------------------------------------------------------------------- */
 
 ClapTrap::ClapTrap() : _name("robot"),
-					_hitPoints(10),
-					_energyPoints(10),
-					_attackDamage(0) {
+					_hitPoints(CLAPTRAP_DEFAULT_HIT_POINTS),
+					_energyPoints(CLAPTRAP_DEFAULT_ENERGY_POINTS),
+					_attackDamage(CLAPTRAP_DEFAULT_ATTACK_DAMAGE) {
 	std::cout	<< BOLD BLACK "ClapTrap created with "
 				<< RESET YELLOW "default"
 				<< BOLD BLACK " name: " GREEN
@@ -154,14 +154,13 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 		std::cout	<< "💥 " GREEN BOLD << this->getName() << RESET
 					<< DIM " takes " RESET << amount << " damage and is destroyed!"
 					<< std::endl;
+		return ;
 	}
-	else {
-		this->_hitPoints -= amount;
-		std::cout	<< "💥 " GREEN BOLD << this->getName() << RESET
-					<< DIM " takes " RESET << amount
-					<< " damage and now has " << this->_hitPoints << " HP left!"
-					<< std::endl;
-	}
+	_hitPoints -= amount;
+	std::cout	<< "💥 " GREEN BOLD << this->getName() << RESET
+				<< DIM " takes " RESET << amount
+				<< " damage and now has " << this->_hitPoints << " HP left!"
+				<< std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
