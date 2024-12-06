@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 17:30:23 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/05 20:01:11 by algultse         ###   ########.fr       */
+/*   Created: 2024/12/06 17:45:19 by algultse          #+#    #+#             */
+/*   Updated: 2024/12/06 18:58:15 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                         Utility Functions for Testing                      */
@@ -33,94 +34,79 @@ static void	printStatus(const ClapTrap& robot)
 /*                                Test Functions                              */
 /* -------------------------------------------------------------------------- */
 
-void	testClapTrap()
+void	testFragTrap()
 {
-	std::cout	<< CYAN INVERSE << "\n\t⚙️  Testing ClapTrap ⚙️\n"
+	std::cout	<< CYAN INVERSE << "\n\t⚙️  Testing FragTrap ⚙️\n"
 				<< RESET << std::endl;
 
-	ClapTrap	alpha("Alpha");
-	ClapTrap	beta("Beta");
+	FragTrap	alpha("Alpha");
+	FragTrap	beta("Beta");
 
-	std::cout	<< GREEN BOLD << "\n🔧 Initializing ClapTraps..."
+	std::cout	<< GREEN BOLD << "\n🔧 Initializing FragTraps..."
 				<< RESET << std::endl;
 	printStatus(alpha);
 	printStatus(beta);
 
-	std::cout	<< YELLOW << "\n🤖 ClapTrap Battle Begins!"	
+	std::cout	<< YELLOW << "\n🤖 FragTrap Battle Begins!"
 				<< RESET << std::endl;
+
 	alpha.attack(beta.getName());
 	beta.takeDamage(alpha.getAttackDamage());
-	beta.beRepaired(5);
 
-	std::cout	<< PURPLE << "\n🔧 Final ClapTrap Status:"
+	std::cout	<< BLUE << "\n🙌 Testing High Fives..."
+				<< RESET << std::endl;
+	beta.beRepaired(5);
+	beta.highFivesGuys();
+
+	alpha.takeDamage(beta.getHitPoints());
+	alpha.takeDamage(beta.getAttackDamage());
+	alpha.highFivesGuys();
+
+	std::cout	<< PURPLE << "\n🔧 Final FragTrap Status:"
 				<< RESET << std::endl;
 	printStatus(alpha);
 	printStatus(beta);
 
-	std::cout	<< RED INVERSE << "\n\t⚠️  ClapTrap Test Complete ⚠️\n"
+	std::cout	<< RED INVERSE << "\n\t⚠️  FragTrap Test Complete ⚠️\n"
 				<< RESET << std::endl;
 }
 
-void	testScavTrap()
+void	testMixedTraps()
 {
-	std::cout	<< CYAN INVERSE << "\n\t⚙️  Testing ScavTrap ⚙️\n"
+	std::cout	<< CYAN INVERSE << "\n\t⚙️  Testing Mixed Trap Interactions ⚙️\n"
 				<< RESET << std::endl;
 
+	ClapTrap	basic("Basic");
 	ScavTrap	scav("Scavy");
-	ScavTrap	guard("Guardian");
+	FragTrap	frag("Fraggy");
 
-	std::cout	<< GREEN BOLD << "\n🔧 Initializing ScavTraps..."
+	std::cout	<< GREEN BOLD << "\n🔧 Initializing Traps..."
 				<< RESET << std::endl;
+	printStatus(basic);
 	printStatus(scav);
-	printStatus(guard);
+	printStatus(frag);
 
-	std::cout	<< YELLOW << "\n🤖 ScavTrap Battle Begins!"
-				<< RESET << std::endl;
-	scav.attack(guard.getName());
-	guard.takeDamage(scav.getAttackDamage());
-	guard.beRepaired(10);
-
-	std::cout	<< "\n🔒 Activating Guard Gate Mode..." << std::endl;
-	guard.guardGate();
-
-	std::cout	<< PURPLE << "\n🔧 Final ScavTrap Status:"
-				<< RESET << std::endl;
-	printStatus(scav);
-	printStatus(guard);
-
-	std::cout	<< RED INVERSE << "\n\t⚠️  ScavTrap Test Complete ⚠️\n"
-				<< RESET << std::endl;
-}
-
-void	testScavTrapGuardGate()
-{
-	std::cout	<< CYAN INVERSE << "\n\t⚙️  Testing ScavTrap GuardGate ⚙️\n"
+	std::cout	<< YELLOW << "\n🤖 Mixed Battle Begins!"
 				<< RESET << std::endl;
 
-	ScavTrap	scav("Scavy");
+	basic.attack(scav.getName());
+	scav.takeDamage(basic.getAttackDamage());
+	scav.attack(frag.getName());
+	frag.takeDamage(scav.getAttackDamage());
+	frag.beRepaired(10);
 
-	std::cout	<< GREEN BOLD << "\n🔧 Initializing ScavTrap..."
-				<< RESET << std::endl;
-	scav.displayStatus();
-
-	std::cout	<< YELLOW << "\n🔒 Testing Guard Gate Mode..."
-				<< RESET << std::endl;
-
-	// Проверка: ScavTrap с полным здоровьем
+	std::cout	<< "\n🔒 ScavTrap Testing GuardGate Mode..." << std::endl;
 	scav.guardGate();
 
-	// Уменьшаем здоровье до 0
-	scav.takeDamage(scav.getHitPoints());
-	std::cout	<< YELLOW << "\n💥 ScavTrap takes fatal damage..."
+	std::cout	<< "\n🙌 FragTrap Testing High Fives..." << std::endl;
+	frag.highFivesGuys();
+
+	std::cout	<< PURPLE << "\n🔧 Final Status of All Traps:"
 				<< RESET << std::endl;
+	printStatus(basic);
+	printStatus(scav);
+	printStatus(frag);
 
-	// Проверка: ScavTrap с нулевым здоровьем
-	scav.guardGate();
-
-	std::cout	<< PURPLE << "\n🔧 Final ScavTrap Status:"
-				<< RESET << std::endl;
-	scav.displayStatus();
-
-	std::cout	<< RED INVERSE << "\n\t⚠️  ScavTrap GuardGate Test Complete ⚠️\n"
+	std::cout	<< RED INVERSE << "\n\t⚠️  Mixed Trap Test Complete ⚠️\n"
 				<< RESET << std::endl;
 }

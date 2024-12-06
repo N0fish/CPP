@@ -19,7 +19,7 @@ OBJDIR = ./obj/
 SRCDIR = ./srcs/
 INCDIR = ./include/
 
-SRC = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp 
+SRC = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp test.cpp main.cpp 
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)

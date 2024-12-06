@@ -13,7 +13,7 @@
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
-#include "ClapTrap.hpp"
+# include "ClapTrap.hpp"
 
 # define SCAVTRAP_DEFAULT_HIT_POINTS 100
 # define SCAVTRAP_DEFAULT_ENERGY_POINTS 50
@@ -23,7 +23,7 @@ class ScavTrap : public ClapTrap {
 	public:
 		ScavTrap();
 		ScavTrap(std::string _name);
-		ScavTrap(const ClapTrap& other);
+		ScavTrap(const ScavTrap& other);
 		~ScavTrap();
 
 		ScavTrap	&operator=(const ScavTrap &other);

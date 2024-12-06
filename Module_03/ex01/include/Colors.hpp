@@ -29,22 +29,22 @@
 # define STRIKETHROUGH "\e[9m"
 # define DIM "\e[2m"
 
-# define RED_BACKGROUND "\e[41m"      // Красный фон
-# define GREEN_BACKGROUND "\e[42m"    // Зелёный фон
-# define YELLOW_BACKGROUND "\e[43m"   // Жёлтый фон
-# define BLUE_BACKGROUND "\e[44m"     // Синий фон
-# define PURPLE_BACKGROUND "\e[45m"   // Фиолетовый фон
-# define CYAN_BACKGROUND "\e[46m"     // Голубой фон
-# define BLACK_BACKGROUND "\e[40m"    // Чёрный фон
-# define WHITE_BACKGROUND "\e[47m"    // Белый фон
+# define RED_BACKGROUND "\e[41m"
+# define GREEN_BACKGROUND "\e[42m"
+# define YELLOW_BACKGROUND "\e[43m"
+# define BLUE_BACKGROUND "\e[44m"
+# define PURPLE_BACKGROUND "\e[45m"
+# define CYAN_BACKGROUND "\e[46m"
+# define BLACK_BACKGROUND "\e[40m"
+# define WHITE_BACKGROUND "\e[47m"
 
-# define BRIGHT_RED "\e[91m"          // Ярко-красный
-# define BRIGHT_GREEN "\e[92m"        // Ярко-зелёный
-# define BRIGHT_YELLOW "\e[93m"       // Ярко-жёлтый
-# define BRIGHT_BLUE "\e[94m"         // Ярко-синий
-# define BRIGHT_PURPLE "\e[95m"       // Ярко-фиолетовый
-# define BRIGHT_CYAN "\e[96m"         // Ярко-голубой
-# define BRIGHT_WHITE "\e[97m"        // Ярко-белый
+# define BRIGHT_RED "\e[91m"
+# define BRIGHT_GREEN "\e[92m"
+# define BRIGHT_YELLOW "\e[93m"
+# define BRIGHT_BLUE "\e[94m"
+# define BRIGHT_PURPLE "\e[95m"
+# define BRIGHT_CYAN "\e[96m"
+# define BRIGHT_WHITE "\e[97m"
 
 # define INVERSE_BLACK_WHITE "\e[3;40;97m"
 # define ITALIC_BLUE_BLACK "\e[3;34;40m"

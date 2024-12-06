@@ -21,11 +21,12 @@ ScavTrap::ScavTrap() : ClapTrap() {
 	_energyPoints = SCAVTRAP_DEFAULT_ENERGY_POINTS;
 	_attackDamage = SCAVTRAP_DEFAULT_ATTACK_DAMAGE;
 
-	std::cout	<< INVERSE ITALIC BLACK "ScavTrap " RESET GREEN_BLACK
+	std::cout	<< INVERSE ITALIC BLACK "ScavTrap from ClapTrap " RESET GREEN_BLACK
 				<< _name << RESET INVERSE ITALIC BLACK " created with "
 				<< RESET ITALIC_YELLOW_ON_BLACK "default" RESET
-				<< INVERSE ITALIC BLACK " values!" RESET
+				<< INVERSE ITALIC BLACK " constructor!" RESET
 				<< std::endl;
+	return ;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
@@ -36,12 +37,21 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 	std::cout	<< INVERSE ITALIC BLACK "ScavTrap " RESET GREEN_BLACK
 				<< _name << RESET INVERSE_BLACK_WHITE " constructed!" RESET
 				<< std::endl;
+	return ;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+	std::cout	<< INVERSE ITALIC BLACK "ScavTrap " RESET GREEN_BLACK
+				<< _name << RESET ITALIC_YELLOW_ON_BLACK << " copied." RESET
+				<< std::endl;
+	return ;
 }
 
 ScavTrap::~ScavTrap() {
 	std::cout	<< INVERSE ITALIC BLACK "ScavTrap " RESET GREEN_BLACK
 				<< _name << RESET ITALIC_BLUE_BLACK " destroyed!" RESET
 				<< std::endl;
+	return ;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -51,9 +61,9 @@ ScavTrap::~ScavTrap() {
 ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
 	if (this != &other)
 		ClapTrap::operator=(other);
-	std::cout << INVERSE ITALIC BLACK "ScavTrap " RESET GREEN_BLACK
-			<< _name << RESET ITALIC_PURPLE_ON_BLACK " assigned!" RESET
-			<< std::endl;
+	std::cout	<< INVERSE ITALIC BLACK "ScavTrap " RESET GREEN_BLACK
+				<< _name << RESET ITALIC_PURPLE_ON_BLACK " assigned!" RESET
+				<< std::endl;
 	return (*this);
 }
 
@@ -62,10 +72,8 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
 /* -------------------------------------------------------------------------- */
 
 void	ScavTrap::attack(const std::string& target) {
-	std::string	adjustedTarget;
-
 	if (_hitPoints <= 0) {
-		std::cout	<< "💀 " GREEN_BLACK << _name << RESET 
+		std::cout	<< "⚰️ " GREEN_BLACK << _name << RESET 
 					<< INVERSE_BLACK_WHITE " can't " RESET
 					<< ITALIC_RED_ON_BLACK "attack" RESET
 					<< INVERSE_BLACK_WHITE" because it's destroyed!" RESET
@@ -79,10 +87,9 @@ void	ScavTrap::attack(const std::string& target) {
 					<< std::endl;
 		return;
 	}
-	adjustedTarget = target;
-	if (adjustedTarget == this->_name)
-		adjustedTarget = "itself";
-	std::cout	<< "🛡️ " GREEN_BLACK << _name << RESET
+
+	std::string	adjustedTarget = (target == _name) ? "itself" : target;
+	std::cout	<< "💥🛡️ " GREEN_BLACK << _name << RESET
 				<< INVERSE_BLACK_WHITE " launches a powerful " RESET
 				<< ITALIC_RED_ON_BLACK "attack" RESET
 				<< INVERSE_BLACK_WHITE " on " << adjustedTarget
