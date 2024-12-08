@@ -23,7 +23,7 @@ static void	checkArguments(int argc, char **argv)
 	exit(EXIT_FAILURE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	checkArguments(argc, argv);
 

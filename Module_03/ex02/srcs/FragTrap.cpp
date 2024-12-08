@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FlagTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -43,7 +43,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 }
 
 FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {
-	std::cout	<< GRAY_ON_WHITE "ScavTrap "
+	std::cout	<< GRAY_ON_WHITE "FragTrap "
 				<< BOLD GREEN_ON_WHITE << _name
 				<< BOLD YELLOW_ON_WHITE << " copied." RESET
 				<< std::endl;
