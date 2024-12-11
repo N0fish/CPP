@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:10 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/05 17:55:59 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:05:25 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include <string>
 # include <iostream>
+# include <iomanip>
 # include <fstream>
+# include <cstdlib>
 # include "Colors.hpp"
 
 # define CLAPTRAP_DEFAULT_HIT_POINTS 10
