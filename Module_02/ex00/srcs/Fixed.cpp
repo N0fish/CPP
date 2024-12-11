@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:52:30 by algultse          #+#    #+#             */
-/*   Updated: 2024/10/29 11:46:52 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:37:43 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ Fixed::Fixed() : _value(0) {
 	return ;
 }
 
-Fixed::Fixed( const Fixed &other ) : _value(other._value) {
+Fixed::Fixed( const Fixed &other ) {
 	std::cout	<< YELLOW "Copy constructor" RESET " called"
 				<< std::endl;
+	*this = other;
 	return ;
 }
 
