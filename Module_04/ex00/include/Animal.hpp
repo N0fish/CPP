@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 23:22:05 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/10 23:27:19 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:21:08 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string>
 # include <iostream>
 # include <fstream>
+# include <cstdlib>
 # include "Colors.hpp"
 
 class Animal {
