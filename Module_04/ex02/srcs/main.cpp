@@ -6,11 +6,11 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 23:43:19 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:59:39 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:07:13 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 static void	checkArguments(int argc, char **argv)
 {
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	std::cout << BOLD INVERSE << "\n\t\t=== Running all tests ===\n" << RESET << std::endl;
 
 	testSubject();
-	testAnimalArray();
+	testAAnimalArray();
 	testDeepCopy();
 
 	std::cout << BOLD INVERSE << "\n\t\t=== All tests completed ===\n" << RESET << std::endl;

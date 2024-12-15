@@ -6,16 +6,16 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 23:32:32 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:04:13 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:04:43 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAT_HPP
 # define CAT_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 
-class Cat : public Animal {
+class Cat : public AAnimal {
 	private:
 		Brain*	_brain;
 

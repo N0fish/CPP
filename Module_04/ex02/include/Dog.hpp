@@ -6,16 +6,16 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 23:34:06 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:21:59 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:10:21 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 # define DOG_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 
-class Dog : public Animal {
+class Dog : public AAnimal {
 	private:
 		Brain*	_brain;
 

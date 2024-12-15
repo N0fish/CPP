@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 17:10:32 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:18:38 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:33:58 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 //test
 void	testSubject(void);
 void	testDeepCopy(void);
-void	testAnimalArray(void);
+void	testAAnimalArray(void);
 void	testWrongAnimals(void);
 
 #endif

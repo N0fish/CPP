@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 23:52:00 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:14:12 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:10:01 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Cat::Cat() {
 }
 
 Cat::Cat(const std::string& type, const std::string& firstIdea)
-													: Animal(type),
+													: AAnimal(type),
 													_brain(new Brain()) {
 	_brain->setIdea(0, firstIdea);
 	std::cout	<< "A Cat of type \""
@@ -40,8 +40,7 @@ Cat::Cat(const std::string& type, const std::string& firstIdea)
 	return ;
 }
 
-
-Cat::Cat(const Cat& other) : Animal(other), _brain(new Brain(*other._brain)) {
+Cat::Cat(const Cat& other) : AAnimal(other), _brain(new Brain(*other._brain)) {
 	_type = other._type;
 	std::cout	<< "A Cat has been perfectly mirrored from \""
 				<< CYAN BOLD << _type << RESET
@@ -70,7 +69,7 @@ Cat::~Cat() {
 Cat&	Cat::operator=(const Cat& other) {
 	if (this != &other)
 	{
-		Animal::operator=(other);
+		AAnimal::operator=(other);
 		_type = other._type;
 		*_brain = *other._brain;
 		std::cout	<< "A Cat of type \""

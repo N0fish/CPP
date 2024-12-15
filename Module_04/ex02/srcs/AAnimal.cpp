@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 23:45:50 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:22:31 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/14 22:01:14 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                      CONSTRUCTORS & DESTRUCTORS                            */
 /* -------------------------------------------------------------------------- */
 
-Animal::Animal() : _type("Animal") {
+AAnimal::AAnimal() : _type("AAnimal") {
 	std::cout	<< "A wild "
 				<< GREEN BOLD << _type << RESET
 				<< " appears! "
@@ -24,7 +24,7 @@ Animal::Animal() : _type("Animal") {
 				<< std::endl;
 }
 
-Animal::Animal(const std::string& type) : _type(type) {
+AAnimal::AAnimal(const std::string& type) : _type(type) {
 	std::cout	<< "An \""
 				<< GREEN BOLD << _type << RESET
 				<< "\" has been created to roam the world! "
@@ -32,9 +32,8 @@ Animal::Animal(const std::string& type) : _type(type) {
 				<< std::endl;
 }
 
-
-Animal::Animal(const Animal& othet) : _type(othet._type){
-	std::cout	<< "An Animal of type \""
+AAnimal::AAnimal(const AAnimal& othet) : _type(othet._type){
+	std::cout	<< "An AAnimal of type \""
 				<< GREEN BOLD << _type << RESET
 				<< "\" has been duplicated!"
 				<< "[Copy Constructor]"
@@ -42,9 +41,9 @@ Animal::Animal(const Animal& othet) : _type(othet._type){
 	return ;
 }
 
-Animal::~Animal() {
+AAnimal::~AAnimal() {
 	std::cout	<< "The "
-				<< GREEN "Animal" RESET
+				<< GREEN "AAnimal" RESET
 				<< " of type \""
 				<< GREEN BOLD << _type << RESET
 				<< "\" disappears into the void. "
@@ -57,11 +56,11 @@ Animal::~Animal() {
 /*                                 OPERATORS                                  */
 /* -------------------------------------------------------------------------- */
 
-Animal&	Animal::operator=(const Animal& other) {
+AAnimal&	AAnimal::operator=(const AAnimal& other) {
 	if (this != &other)
 	{
 		_type = other._type;
-		std::cout	<< "An Animal of type \""
+		std::cout	<< "An AAnimal of type \""
 					<< GREEN BOLD << _type << RESET
 					<< "\" has been reassigned! "
 					<< "[Assignment Operator]"
@@ -71,22 +70,9 @@ Animal&	Animal::operator=(const Animal& other) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                             GETTERS and SETTERS                            */
+/*                                   GETTER                                   */
 /* -------------------------------------------------------------------------- */
 
-std::string	const	&Animal::getType(void) const {
+std::string	const	&AAnimal::getType(void) const {
 	return (this->_type);
-}
-
-void	Animal::setType(std::string const &type) {
-	this->_type = type;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                              PUBLIC FUNCTIONS                              */
-/* -------------------------------------------------------------------------- */
-
-void	Animal::makeSound() const {
-	std::cout	<< GREEN ITALIC << "* A faint rustling sound can be heard... *"
-				<< RESET << std::endl;
 }

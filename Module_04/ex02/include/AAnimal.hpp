@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 23:22:05 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:20:10 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/15 22:06:20 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AANIMAL_HPP
+# define AANIMAL_HPP
 
 # include <string>
 # include <iostream>
@@ -20,22 +20,22 @@
 # include "Colors.hpp"
 # include "Brain.hpp"
 
-class Animal {
+class AAnimal {
 	protected:
 		std::string	_type;
 
-	public:
-		Animal();
-		Animal(const std::string& type);
-		Animal(const Animal& othet);
-		virtual ~Animal();
+		AAnimal();
+		AAnimal(const std::string& type);
+		AAnimal(const AAnimal& othet);
 
-		Animal&	operator=(const Animal& other);
+	public:
+		virtual ~AAnimal();
+
+		AAnimal&	operator=(const AAnimal& other);
 
 		std::string const	&getType(void) const;
-		void				setType(std::string const &type);
 
-		virtual void		makeSound() const;
+		virtual void		makeSound() const = 0;
 };
 
 #endif

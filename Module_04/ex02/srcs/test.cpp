@@ -6,11 +6,11 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:56:21 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/14 20:45:50 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:00:02 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"
@@ -21,7 +21,7 @@
 /*                              Utility Functions                             */
 /* -------------------------------------------------------------------------- */
 
-void	printAnimalInfo(const Animal* animal) {
+void	printAAnimalInfo(const AAnimal* animal) {
 	std::cout	<< GREEN << "Type: " << RESET
 				<< animal->getType() << " | ";
 	std::cout	<< YELLOW << "Sound: " << RESET;
@@ -48,22 +48,22 @@ void	testSubject(void)
 				<< "\n\t\t--- Subject tests ---\n"
 				<< RESET << std::endl;
 
-	const Animal*	meta = new Animal();
-	const Animal*	dog = new Dog();
-	const Animal*	cat = new Cat();
+	// const AAnimal*	meta = new AAnimal();
+	const AAnimal*	dog = new Dog();
+	const AAnimal*	cat = new Cat();
 
-	std::cout << GREEN << "\n○○ Animal Types: ○○\n" << RESET;
-	std::cout << meta->getType() << std::endl;
+	std::cout << GREEN << "\n○○ AAnimal Types: ○○\n" << RESET;
+	// std::cout << meta->getType() << std::endl;
 	std::cout << dog->getType() << std::endl;
 	std::cout << cat->getType() << std::endl;
 
-	std::cout << YELLOW << "\n○○ Animal Sounds: ○○\n" << RESET;
-	meta->makeSound();
+	std::cout << YELLOW << "\n○○ AAnimal Sounds: ○○\n" << RESET;
+	// meta->makeSound();
 	dog->makeSound();
 	cat->makeSound();
 
 	std::cout << std::endl;
-	delete meta;
+	// delete meta;
 	delete dog;
 	delete cat;
 
@@ -72,39 +72,39 @@ void	testSubject(void)
 				<< RESET << std::endl;
 }
 
-void	testAnimalArray(void)
+void	testAAnimalArray(void)
 {
 	std::cout	<< PURPLE INVERSE
-				<< "\n\t--- Animal Array Test ---\n"
+				<< "\n\t--- AAnimal Array Test ---\n"
 				<< RESET << std::endl;
 
-	const int	arraySize = 6;
-	Animal*		animals[arraySize];
+	const int		arraySize = 6;
+	AAnimal*		aanimals[arraySize];
 
 	// Create an array of Dogs and Cats
 	for (int i = 0; i < arraySize; ++i) {
 		if (i % 2 == 0)
-			animals[i] = new Dog();
+			aanimals[i] = new Dog();
 		else
-			animals[i] = new Cat();
+			aanimals[i] = new Cat();
 	}
 
 	// Make all animals speak
-	std::cout	<< YELLOW << "\n○○ Making all animals speak: ○○"
+	std::cout	<< YELLOW << "\n○○ Making all aanimals speak: ○○"
 				<< RESET << std::endl;
 	for (int i = 0; i < arraySize; ++i) {
-		animals[i]->makeSound();
+		aanimals[i]->makeSound();
 	}
 
 	// Delete all animals
-	std::cout	<< RED << "\n○○ Deleting all animals: ○○"
+	std::cout	<< RED << "\n○○ Deleting all aanimals: ○○"
 				<< RESET << std::endl;
 	for (int i = 0; i < arraySize; ++i) {
-		delete animals[i];
+		delete aanimals[i];
 	}
 
 	std::cout	<< PURPLE INVERSE
-				<< "\n\t--- End of Animal Array Test ---\n"
+				<< "\n\t--- End of AAnimal Array Test ---\n"
 				<< RESET << std::endl;
 }
 
