@@ -124,7 +124,7 @@ void	testDeepCopy(void)
 	printBrainIdeas(originalCat->getBrain());
 	std::cout	<< std::endl;
 
-	Cat* copiedCat = new Cat(*originalCat);
+	Cat*	copiedCat = new Cat(*originalCat);
 	std::cout	<< BLUE << "○○ Copied Cat Brain Ideas: ○○"
 				<< RESET  << std::endl;
 	printBrainIdeas(copiedCat->getBrain());
