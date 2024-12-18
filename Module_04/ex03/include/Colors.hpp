@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 17:10:32 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/15 22:47:08 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:23:44 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,11 @@
 # define BRIGHT_PURPLE "\e[95m"
 # define BRIGHT_CYAN "\e[96m"
 # define BRIGHT_WHITE "\e[97m"
+
+// test
+void	testSubject(void);
+void	testMateriaSource(void);
+void	testCharacters(void);
+void	testDuel(void);
 
 #endif

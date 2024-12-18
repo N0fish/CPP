@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:18:39 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/17 18:46:09 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:52 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,30 @@
 /* -------------------------------------------------------------------------- */
 
 Ice::Ice() : AMateria("ice") {
-	std::cout	<< CYAN BOLD "Ice" RESET
-				<< " materia has been created! [Default Constructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< CYAN BOLD "Ice" RESET
+					<< " materia has been created! [Default Constructor]"
+					<< std::endl;
+	}
 	return ;
 }
 
 Ice::Ice(const Ice &ice) : AMateria("ice") {
-	std::cout	<< CYAN BOLD "Ice" RESET
-				<< " materia has been duplicated! [Copy Constructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< CYAN BOLD "Ice" RESET
+					<< " materia has been duplicated! [Copy Constructor]"
+					<< std::endl;
+	}
 	*this = ice;
 	return ;
 }
 
 Ice::~Ice() {
-	std::cout	<< CYAN BOLD "Ice" RESET
-				<< " materia has been destroyed! [Destructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< CYAN BOLD "Ice" RESET
+					<< " materia has been destroyed! [Destructor]"
+					<< std::endl;
+	}
 	return ;
 }
 
@@ -46,10 +52,11 @@ Ice	&Ice::operator=(const Ice &ice) {
 	if (this != &ice)
 	{
 		AMateria::operator=(ice);
-		// _type = ice._type;
-		std::cout	<< CYAN BOLD "Ice" RESET
-					<< " materia has been reassigned! [Assignment Operator]"
-					<< std::endl;
+		if (IS_PRINT) {
+			std::cout	<< CYAN BOLD "Ice" RESET
+						<< " materia has been reassigned! [Assignment Operator]"
+						<< std::endl;
+		}
 	}
 	return (*this);
 }

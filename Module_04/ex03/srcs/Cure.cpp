@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:19:51 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/17 19:01:09 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:06 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,30 @@
 /* -------------------------------------------------------------------------- */
 
 Cure::Cure() : AMateria("cure") {
-	std::cout	<< GREEN BOLD  "Cure" RESET
-				<< " materia has been created! [Default Constructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< GREEN BOLD  "Cure" RESET
+					<< " materia has been created! [Default Constructor]"
+					<< std::endl;
+	}
 	return ;
 }
 
 Cure::Cure(const Cure &cure) : AMateria("cure") {
-	std::cout	<< GREEN BOLD  "Cure" RESET
-				<< " materia has been duplicated! [Copy Constructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< GREEN BOLD  "Cure" RESET
+					<< " materia has been duplicated! [Copy Constructor]"
+					<< std::endl;
+	}
 	*this = cure;
 	return ;
 }
 
 Cure::~Cure() {
-	std::cout	<< GREEN BOLD  "Cure" RESET
-				<< " materia has been destroyed! [Destructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< GREEN BOLD  "Cure" RESET
+					<< " materia has been destroyed! [Destructor]"
+					<< std::endl;
+	}
 	return ;
 }
 
@@ -45,10 +51,11 @@ Cure::~Cure() {
 Cure	&Cure::operator=(const Cure &cure) {
 	if (this != &cure) {
 		AMateria::operator=(cure);
-		// _type = cure._type;
-		std::cout	<< GREEN BOLD  "Cure" RESET
-					<< " materia has been reassigned! [Assignment Operator]"
-					<< std::endl;
+		if (IS_PRINT) {
+			std::cout	<< GREEN BOLD  "Cure" RESET
+						<< " materia has been reassigned! [Assignment Operator]"
+						<< std::endl;
+		}
 	}
 	return (*this);
 }

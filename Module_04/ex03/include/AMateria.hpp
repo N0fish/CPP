@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 21:59:05 by algultse          #+#    #+#             */
-/*   Updated: 2024/12/16 14:36:27 by algultse         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:20:34 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fstream>
 # include <cstdlib>
 # include "Colors.hpp"
+
+# define IS_PRINT false
 
 class ICharacter;
 

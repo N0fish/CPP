@@ -19,9 +19,11 @@
 MateriaSource::MateriaSource() {
 	for (int i = 0; i < _maxMateria; i++)
 		_learnedMateria[i] = NULL;
-	std::cout	<< RED DIM "MateriaSource" RESET
-				<< " has been initialized! [Default Constructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< RED DIM "MateriaSource" RESET
+					<< " has been initialized! [Default Constructor]"
+					<< std::endl;
+	}
 	return ;
 }
 
@@ -29,9 +31,11 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
 	for (int i = 0; i < _maxMateria; i++)
 		_learnedMateria[i] = NULL;
 	*this = other;
-	std::cout	<< RED DIM "MateriaSource" RESET
-				<< " has been duplicated! [Copy Constructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< RED DIM "MateriaSource" RESET
+					<< " has been duplicated! [Copy Constructor]"
+					<< std::endl;
+	}
 	return ;
 }
 
@@ -42,9 +46,11 @@ MateriaSource::~MateriaSource() {
 			_learnedMateria[i] = NULL;
 		}
 	}
-	std::cout	<< RED DIM  "MateriaSource" RESET
-				<< " has been destroyed! [Destructor]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< RED DIM  "MateriaSource" RESET
+					<< " has been destroyed! [Destructor]"
+					<< std::endl;
+	}
 	return ;
 }
 
@@ -64,9 +70,11 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& other) {
 				_learnedMateria[i] = NULL;
 		}
 	}
-	std::cout	<< RED DIM "MateriaSource" RESET
-				<< " has been reassigned! [Assignment Operator]"
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< RED DIM "MateriaSource" RESET
+					<< " has been reassigned! [Assignment Operator]"
+					<< std::endl;
+	}
 	return (*this);
 }
 
@@ -76,9 +84,11 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& other) {
 
 void	MateriaSource::learnMateria(AMateria* m) {
 	if (!m) {
-		std::cout	<< "Cannot learn a null "
-					<< RED DIM "materia!" RESET
-					<< std::endl;
+		if (IS_PRINT) {
+			std::cout	<< "Cannot learn a null "
+						<< RED DIM "materia!" RESET
+						<< std::endl;
+		}
 		return;
 	}
 	for (int i = 0; i < _maxMateria; i++) {
@@ -87,9 +97,11 @@ void	MateriaSource::learnMateria(AMateria* m) {
 			return ;
 		}
 	}
-	std::cout	<< RED DIM "MateriaSource" RESET
-				<< " is full! Cannot learn more materia."
-				<< std::endl;
+	if (IS_PRINT) {
+		std::cout	<< RED DIM "MateriaSource" RESET
+					<< " is full! Cannot learn more materia."
+					<< std::endl;
+	}
 	if (m)
 		delete m;
 	return ;
@@ -99,16 +111,20 @@ AMateria*	MateriaSource::createMateria(const std::string & type) {
 	for (int i = 0; i < _maxMateria; ++i) {
 		if (_learnedMateria[i] && _learnedMateria[i]->getType() == type)
 		{
-			std::cout	<< "Materia \""
-						<< RED DIM << type << RESET
-						<< "\" created from slot ["
-						<< RED DIM << i << RESET
-						<< "]." << std::endl;
+			if (IS_PRINT) {
+				std::cout	<< "Materia \""
+							<< RED DIM << type << RESET
+							<< "\" created from slot ["
+							<< RED DIM << i << RESET
+							<< "]." << std::endl;
+			}
 			return (_learnedMateria[i]->clone());
 		}
 	}
-	std::cout	<< "No matching materia found for type \""
-				<< RED DIM << type << RESET
-				<< "\"." << std::endl;
+	if (IS_PRINT) {
+		std::cout	<< "No matching materia found for type \""
+					<< RED DIM << type << RESET
+					<< "\"." << std::endl;
+	}
 	return (NULL);
 }

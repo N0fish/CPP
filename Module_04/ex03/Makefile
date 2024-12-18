@@ -6,7 +6,7 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/08 23:28:03 by algultse          #+#    #+#              #
-#    Updated: 2024/12/15 22:44:09 by algultse         ###   ########.fr        #
+#    Updated: 2024/12/18 17:24:05 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJDIR = ./obj/
 SRCDIR = ./srcs/
 INCDIR = ./include/
 
-SRC = AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp main.cpp 
+SRC = AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp test.cpp main.cpp 
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
