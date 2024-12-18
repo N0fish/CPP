@@ -23,10 +23,11 @@ Cure::Cure() : AMateria("cure") {
 	return ;
 }
 
-Cure::Cure(const Cure &cure) : AMateria(cure) {
+Cure::Cure(const Cure &cure) : AMateria("cure") {
 	std::cout	<< GREEN BOLD  "Cure" RESET
 				<< " materia has been duplicated! [Copy Constructor]"
 				<< std::endl;
+	*this = cure;
 	return ;
 }
 
@@ -44,6 +45,7 @@ Cure::~Cure() {
 Cure	&Cure::operator=(const Cure &cure) {
 	if (this != &cure) {
 		AMateria::operator=(cure);
+		// _type = cure._type;
 		std::cout	<< GREEN BOLD  "Cure" RESET
 					<< " materia has been reassigned! [Assignment Operator]"
 					<< std::endl;
@@ -56,10 +58,7 @@ Cure	&Cure::operator=(const Cure &cure) {
 /* -------------------------------------------------------------------------- */
 
 AMateria	*Cure::clone(void) const {
-	AMateria	*cureClone;
-
-	cureClone = new Cure();
-	return (cureClone);
+	return (new Cure());
 }
 
 void	Cure::use(ICharacter &target) {

@@ -23,10 +23,11 @@ Ice::Ice() : AMateria("ice") {
 	return ;
 }
 
-Ice::Ice(const Ice &ice) : AMateria(ice) {
+Ice::Ice(const Ice &ice) : AMateria("ice") {
 	std::cout	<< CYAN BOLD "Ice" RESET
 				<< " materia has been duplicated! [Copy Constructor]"
 				<< std::endl;
+	*this = ice;
 	return ;
 }
 
@@ -45,6 +46,7 @@ Ice	&Ice::operator=(const Ice &ice) {
 	if (this != &ice)
 	{
 		AMateria::operator=(ice);
+		// _type = ice._type;
 		std::cout	<< CYAN BOLD "Ice" RESET
 					<< " materia has been reassigned! [Assignment Operator]"
 					<< std::endl;
@@ -57,10 +59,7 @@ Ice	&Ice::operator=(const Ice &ice) {
 /* -------------------------------------------------------------------------- */
 
 AMateria	*Ice::clone(void) const {
-	AMateria	*iceClone;
-
-	iceClone = new Ice();
-	return (iceClone);
+	return (new Ice());
 }
 
 void	Ice::use(ICharacter &target) {

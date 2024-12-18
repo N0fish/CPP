@@ -17,8 +17,8 @@
 /* -------------------------------------------------------------------------- */
 
 MateriaSource::MateriaSource() {
-	for (int i = 0; i < _maxMateria; ++i)
-		_learnedMateria[i] = nullptr;
+	for (int i = 0; i < _maxMateria; i++)
+		_learnedMateria[i] = NULL;
 	std::cout	<< RED DIM "MateriaSource" RESET
 				<< " has been initialized! [Default Constructor]"
 				<< std::endl;
@@ -26,17 +26,9 @@ MateriaSource::MateriaSource() {
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other) {
-	for (int i = 0; i < _maxMateria; ++i) {
-		if (other._learnedMateria[i]) {
-			_learnedMateria[i] = other._learnedMateria[i]->clone();
-			std::cout << RED DIM "Cloning materia at slot " << i << RESET<< std::endl;
-			if (!_learnedMateria[i]) {
-				std::cerr << RED DIM "Error: clone() returned nullptr for slot " << i << RESET << std::endl;
-			}
-		}
-		else
-			_learnedMateria[i] = nullptr;
-	}
+	for (int i = 0; i < _maxMateria; i++)
+		_learnedMateria[i] = NULL;
+	*this = other;
 	std::cout	<< RED DIM "MateriaSource" RESET
 				<< " has been duplicated! [Copy Constructor]"
 				<< std::endl;
@@ -44,11 +36,10 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
 }
 
 MateriaSource::~MateriaSource() {
-	for (int i = 0; i < _maxMateria; ++i)
-	{
+	for (int i = 0; i < _maxMateria; i++) {
 		if (_learnedMateria[i]) {
 			delete _learnedMateria[i];
-			_learnedMateria[i] = nullptr;
+			_learnedMateria[i] = NULL;
 		}
 	}
 	std::cout	<< RED DIM  "MateriaSource" RESET
@@ -68,12 +59,9 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& other) {
 				delete _learnedMateria[i];
 			if (other._learnedMateria[i]) {
 				_learnedMateria[i] = other._learnedMateria[i]->clone();
-				if (!_learnedMateria[i]) {
-					std::cerr << RED DIM "Error: clone() returned nullptr for slot " << i << RESET << std::endl;
-				}
 			}
 			else
-				_learnedMateria[i] = nullptr;
+				_learnedMateria[i] = NULL;
 		}
 	}
 	std::cout	<< RED DIM "MateriaSource" RESET
@@ -93,20 +81,18 @@ void	MateriaSource::learnMateria(AMateria* m) {
 					<< std::endl;
 		return;
 	}
-	for (int i = 0; i < _maxMateria; ++i) {
+	for (int i = 0; i < _maxMateria; i++) {
 		if (!_learnedMateria[i]) {
-			_learnedMateria[i] = m->clone();
-			std::cout	<< "Materia \""
-						<< RED DIM << m->getType() << RESET
-						<< "\" learned in slot ["
-						<< RED DIM << i << RESET
-						<< "]." << std::endl;
-			return;
+			_learnedMateria[i] = m;
+			return ;
 		}
 	}
 	std::cout	<< RED DIM "MateriaSource" RESET
 				<< " is full! Cannot learn more materia."
 				<< std::endl;
+	if (m)
+		delete m;
+	return ;
 }
 
 AMateria*	MateriaSource::createMateria(const std::string & type) {
@@ -124,5 +110,5 @@ AMateria*	MateriaSource::createMateria(const std::string & type) {
 	std::cout	<< "No matching materia found for type \""
 				<< RED DIM << type << RESET
 				<< "\"." << std::endl;
-	return (nullptr);
+	return (NULL);
 }

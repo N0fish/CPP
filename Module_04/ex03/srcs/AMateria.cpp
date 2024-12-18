@@ -56,7 +56,7 @@ AMateria::~AMateria() {
 AMateria	&AMateria::operator=(const AMateria &amateria) {
 	if (this != &amateria)
 	{
-		_type = amateria._type;
+		this->_type = amateria._type;
 		std::cout	<< "AMateria of type \""
 					<< PURPLE BOLD << _type << RESET
 					<< "\" has been reassigned! [Assignment Operator]" 
@@ -70,7 +70,7 @@ AMateria	&AMateria::operator=(const AMateria &amateria) {
 /* -------------------------------------------------------------------------- */
 
 std::string const	&AMateria::getType(void) const {
-	return (_type);
+	return (this->_type);
 }
 
 /* -------------------------------------------------------------------------- */

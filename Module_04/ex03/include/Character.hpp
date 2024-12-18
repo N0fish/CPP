@@ -34,6 +34,8 @@ class Character : public ICharacter {
 		void				equip(AMateria *m);					// добавлнение
 		void				unequip(int idx);					// сброс
 		void				use(int idx, ICharacter &target);	// использование
+
+		void				_deleteInventory();
 };
 
 #endif

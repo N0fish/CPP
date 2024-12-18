@@ -17,8 +17,8 @@
 /* -------------------------------------------------------------------------- */
 
 Character::Character() : _name("Unknown") {
-	for (int i = 0; i < _inventorySize; ++i)
-		_inventory[i] = nullptr;
+	for (int i = 0; i < _inventorySize; i++)
+		_inventory[i] = NULL;
 	std::cout	<< "Character \""
 				<< YELLOW BOLD << _name << RESET
 				<< "\" has entered the world! [Default Constructor]"
@@ -27,8 +27,8 @@ Character::Character() : _name("Unknown") {
 }
 
 Character::Character(const std::string &name) : _name(name) {
-	for (int i = 0; i < _inventorySize; ++i)
-		_inventory[i] = nullptr;
+	for (int i = 0; i < _inventorySize; i++)
+		_inventory[i] = NULL;
 	std::cout	<< "Character \""
 				<< YELLOW BOLD << _name << RESET
 				<< "\" is ready for adventure! [Parameterized Constructor]"
@@ -37,12 +37,9 @@ Character::Character(const std::string &name) : _name(name) {
 }
 
 Character::Character(const Character &other) : _name(other._name) {
-	for (int i = 0; i < _inventorySize; ++i) {
-		if (other._inventory[i])
-			_inventory[i] = other._inventory[i]->clone();
-		else
-			_inventory[i] = nullptr;
-	}
+	for (int i = 0; i < _inventorySize; i++)
+		_inventory[i] = NULL;
+	*this = other;
 	std::cout	<< "Character \""
 				<< YELLOW BOLD << _name << RESET 
 				<< "\" has been duplicated! [Copy Constructor]"
@@ -51,10 +48,10 @@ Character::Character(const Character &other) : _name(other._name) {
 }
 
 Character::~Character() {
-	for (int i = 0; i < _inventorySize; ++i) {
+	for (int i = 0; i < _inventorySize; i++) {
 		if (_inventory[i]) {
 			delete _inventory[i];
-			_inventory[i] = nullptr;
+			_inventory[i] = NULL;
 		}
 	}
 	std::cout	<< "Character \""
@@ -69,15 +66,13 @@ Character::~Character() {
 /* -------------------------------------------------------------------------- */
 
 Character	&Character::operator=(const Character &other) {
-		if (this != &other) {
+	if (this != &other)
+	{
 		_name = other._name;
-		for (int i = 0; i < _inventorySize; ++i) {
-			if (_inventory[i])
-				delete _inventory[i];
+		_deleteInventory();
+		for (int i = 0; i < _inventorySize; i++) {
 			if (other._inventory[i])
 				_inventory[i] = other._inventory[i]->clone();
-			else
-				_inventory[i] = nullptr;
 		}
 		std::cout	<< "Character \""
 					<< YELLOW BOLD << _name << RESET
@@ -106,17 +101,7 @@ void	Character::equip(AMateria *m) {
 					<< std::endl;
 		return ;
     }
-	for (int i = 0; i < _inventorySize; ++i) {
-		if (_inventory[i] == m) {
-			std::cout	<< "Materia \""
-						<< YELLOW BOLD << m->getType() << RESET
-						<< "\" is already equipped in slot ["
-						<< BOLD << i << RESET
-						<< "]." << std::endl;
-			return;
-		}
-	}
-	for (int i = 0; i < _inventorySize; ++i) {
+	for (int i = 0; i < _inventorySize; i++) {
 		if (!_inventory[i]) {
 			_inventory[i] = m;
 			std::cout	<< "Materia \""
@@ -130,37 +115,32 @@ void	Character::equip(AMateria *m) {
 	std::cout	<< "Inventory full! Cannot equip materia \""
 				<< YELLOW BOLD << m->getType() << RESET
 				<< "\"." << std::endl;
+	if (m)
+		delete m;
+	return ;
 }
 
-// void	Character::unequip(int idx) {
-// 	if (idx < 0 || idx >= _inventorySize) {
-// 		std::cout	<< "Invalid slot [" 
-// 					<< YELLOW BOLD << idx << RESET
-// 					<< "] for unequip."
-// 					<< std::endl;
-// 		return;
-// 	}
-// 	if (!_inventory[idx]) {
-// 		std::cout	<< "Slot ["
-// 					<< YELLOW BOLD << idx << RESET
-// 					<< "] is already empty."
-// 					<< std::endl;
-// 		return;
-// 	}
-// 	std::cout	<< "Materia \""
-// 				<< YELLOW BOLD << _inventory[idx]->getType() << RESET
-// 				<< "\" unequipped from slot ["
-// 				<< BOLD << idx << RESET
-// 				<< "]." << std::endl;
-// 	_inventory[idx] = nullptr;
-// }
-
-void Character::unequip(int idx) {
-	if (idx < 0 || idx >= _inventorySize || !_inventory[idx]) {
-		std::cout << "Invalid unequip operation at slot " << idx << std::endl;
+void	Character::unequip(int idx) {
+	if (idx < 0 || idx >= _inventorySize) {
+		std::cout	<< "Invalid slot [" 
+					<< YELLOW BOLD << idx << RESET
+					<< "] for unequip."
+					<< std::endl;
 		return;
 	}
-	_inventory[idx] = nullptr;  // Только убираем из инвентаря, но не удаляем
+	if (!_inventory[idx]) {
+		std::cout	<< "Slot ["
+					<< YELLOW BOLD << idx << RESET
+					<< "] is already empty."
+					<< std::endl;
+		return;
+	}
+	std::cout	<< "Materia \""
+				<< YELLOW BOLD << _inventory[idx]->getType() << RESET
+				<< "\" unequipped from slot ["
+				<< BOLD << idx << RESET
+				<< "]." << std::endl;
+	_inventory[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter &target) {
@@ -170,17 +150,28 @@ void	Character::use(int idx, ICharacter &target) {
 					<< "] for use." << std::endl;
 		return;
 	}
-	if (!_inventory[idx]) {
-		std::cout	<< "Slot ["
-					<< YELLOW BOLD << idx << RESET
-					<< "] is empty. Nothing to use."
-					<< std::endl;
-		return;
+	if (_inventory[idx]) {
+		std::cout	<< "Using materia \""
+					<< YELLOW BOLD << _inventory[idx]->getType() << RESET
+					<< "\" on \""
+					<< YELLOW BOLD << target.getName() << RESET
+					<< "\"." << std::endl;
+		_inventory[idx]->use(target);
+		return ;
 	}
-	std::cout	<< "Using materia \""
-				<< YELLOW BOLD << _inventory[idx]->getType() << RESET
-				<< "\" on \""
-				<< YELLOW BOLD << target.getName() << RESET
-				<< "\"." << std::endl;
-	_inventory[idx]->use(target);
+	std::cout	<< "Slot ["
+				<< YELLOW BOLD << idx << RESET
+				<< "] is empty. Nothing to use."
+				<< std::endl;
+}
+
+void	Character::_deleteInventory() {
+	for (int i = 0; i < _inventorySize; i++) {
+		if (_inventory[i])
+		{
+			delete _inventory[i];
+			_inventory[i] = NULL;
+		}
+	}
+	return ;
 }

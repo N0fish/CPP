@@ -79,13 +79,50 @@ void	testMateriaSource() {
 	AMateria* unknown = source->createMateria("rock");
 
 	std::cout << BLUE DIM BOLD "\n   -- Cleanup --\n" RESET;
-	delete ice;
-	delete cure;
-	delete unknown;
-	delete source;
-	delete copySource;
+	// if (ice)
+		delete ice;
+	// if (cure)
+		delete cure;
+	// if (unknown)
+		delete unknown;
+	// if (source)
+		delete source;
+	// if (copySource)
+		delete copySource;
 	std::cout << GREEN INVERSE << "\n\t--- End of Test Materia Source ---\n" << RESET << std::endl;
 }
+
+// void	testMateriaSource()
+// {
+// 	std::cout << GREEN INVERSE << "\n\t=== Test Materia Source ===\n" << RESET << std::endl;
+
+// 	MateriaSource	source;
+// 	source.learnMateria(new Ice());
+// 	source.learnMateria(new Cure());
+// 	source.learnMateria(new Ice());
+// 	source.learnMateria(new Cure());
+	// source.learnMateria(new Cure()); // Overflow test
+
+	// std::cout << BLUE DIM BOLD "\n   -- Trying to Learn Duplicate Materia --\n" RESET;
+	// source.learnMateria(new Ice());  // Try learning beyond limit
+
+	// std::cout << BLUE DIM BOLD "\n   -- Creating Materia --\n" RESET;
+	// AMateria *created = source.createMateria("ice");
+	// if (created) {
+	// 	std::cout << BLUE DIM BOLD  "Successfully created: " << created->getType() << RESET << std::endl;
+	// 	delete created;
+	// } else {
+	// 	std::cout << BLUE DIM BOLD "Failed to create Materia of type 'ice'." RESET << std::endl;
+	// }
+
+	// std::cout << BLUE DIM BOLD "\n   -- Handling Unknown Materia --\n" RESET;
+	// created = source.createMateria("unknown");
+	// if (!created) {
+	// 	std::cout << BLUE DIM BOLD "Correctly handled unknown Materia type." RESET << std::endl;
+	// }
+
+// 	std::cout << GREEN INVERSE << "\n\t--- End of Test Materia Source ---\n" << RESET << std::endl;
+// }
 
 void	testCharacters() {
 	std::cout << PURPLE INVERSE "\n\t=== Test Characters ===\n" RESET << std::endl;
@@ -97,9 +134,9 @@ void	testCharacters() {
 	AMateria* ice = new Ice();
 	AMateria* cure = new Cure();
 	alice->equip(ice);
-	alice->equip(cure);
+	alice->equip(cure->clone());
 	std::cout << BLUE DIM BOLD "\n   -- Invalid slot nullptr test --" RESET << std::endl;
-	alice->equip(nullptr); // Invalid equip test
+	alice->equip(NULL); // Invalid equip test
 
 	std::cout << BLUE DIM BOLD "\n   -- Using Materia --" RESET << std::endl;
 	alice->use(0, *bob);
@@ -132,28 +169,42 @@ void	testDuel() {
 	source->learnMateria(new Cure());
 
 	std::cout << BLUE DIM BOLD "\n-- Equipping Characters --" RESET << std::endl;
-	igor->equip(source->createMateria("ice"));
-	jessica->equip(source->createMateria("cure"));
+	AMateria*	ice = source->createMateria("ice");
+	AMateria*	cure = source->createMateria("cure");
+	igor->equip(ice);
+	jessica->equip(cure);
+	// igor->equip(source->createMateria("ice"));
+	// jessica->equip(source->createMateria("cure"));
 
 	std::cout << BLUE DIM BOLD "\n-- Fight --" RESET << std::endl;
 	igor->use(0, *jessica);
 	jessica->use(0, *igor);
 
 	std::cout << BLUE DIM BOLD "\n   -- Cleanup --\n" RESET;
-	delete igor;
-	delete jessica;
-	delete source;
+	igor->unequip(0);
+	jessica->unequip(0);
+	if (igor)
+		delete igor;
+	if (jessica)
+		delete jessica;
+	if (source)
+		delete source;
+	if (ice)
+		delete ice;
+	if (cure)
+		delete cure;
 
 	std::cout << PURPLE INVERSE << "\n\t--- End of Test Materia Duel ---\n" << RESET << std::endl;
 }
 
 int	main() {
-	std::cout << "\n=== Running all tests ===\n" << std::endl;
+	std::cout << BOLD INVERSE << "\n\t\t=== Running all tests ===\n" << RESET << std::endl;
 
+	testSubject();
 	testMateriaSource();
 	testCharacters();
 	testDuel();
 
-	std::cout << "\n=== All tests completed ===\n" << std::endl;
+	std::cout << BOLD INVERSE << "\n\t\t=== All tests completed ===\n" << RESET << std::endl;
 	return 0;
 }
