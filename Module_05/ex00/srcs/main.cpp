@@ -73,23 +73,23 @@ void	subjectTests()
 
 	// Test 2: Increment grade
 	try {
-        std::cout	<< YELLOW << "\nIncrementing grade of a bureaucrat:"
+		std::cout	<< YELLOW << "\nIncrementing grade of a bureaucrat:"
 				<< RESET << std::endl;
-        Bureaucrat aurelius("Aurelius", 2);
-        testIncrementDecrement(aurelius);
-    } catch (const std::exception& e) {
-        std::cerr << RED << "⛔ Exception: " << RESET << e.what() << std::endl;
-    }
+		Bureaucrat aurelius("Aurelius", 2);
+		testIncrementDecrement(aurelius);
+	} catch (const std::exception& e) {
+		std::cerr << RED << "⛔ Exception: " << RESET << e.what() << std::endl;
+	}
 
 	// Test 3: Decrement grade
 	try {
 		std::cout	<< YELLOW << "\nDecrementing grade of a bureaucrat:"
 					<< RESET << std::endl;
-        Bureaucrat cassian("Cassian", 149);
-        testIncrementDecrement(cassian);
-    } catch (const std::exception& e) {
-        std::cerr << RED << "⛔ Exception: " << RESET << e.what() << std::endl;
-    }
+		Bureaucrat cassian("Cassian", 149);
+		testIncrementDecrement(cassian);
+	} catch (const std::exception& e) {
+		std::cerr << RED << "⛔ Exception: " << RESET << e.what() << std::endl;
+	}
 
 	// Test 4: Create bureaucrat with invalid grade
 	createTestBureaucrat("Lucina", 151);
@@ -97,32 +97,33 @@ void	subjectTests()
 	std::cout << CYAN INVERSE << "\n\t--- End of Subject Tests ---\n" << RESET << std::endl;
 }
 
-void edgeCaseTests() {
-    std::cout << PURPLE INVERSE << "\n\t--- Edge Case Tests ---\n" << RESET << std::endl;
+void	edgeCaseTests()
+{
+	std::cout << PURPLE INVERSE << "\n\t--- Edge Case Tests ---\n" << RESET << std::endl;
 
-    try {
-        Bureaucrat highEdge("Maximus", 1);
-        std::cout	<< GREEN << "✅ Successfully created: "
+	try {
+		Bureaucrat highEdge("Maximus", 1);
+		std::cout	<< GREEN << "✅ Successfully created: "
 					<< RESET << highEdge << std::endl;
-        testIncrementDecrement(highEdge);
-    } catch (const std::exception& e) {
-        std::cerr	<< RED << "⛔ Exception for HighEdge(Maximus): "
+		testIncrementDecrement(highEdge);
+	} catch (const std::exception& e) {
+		std::cerr	<< RED << "⛔ Exception for HighEdge(Maximus): "
 					<< RESET << e.what() << std::endl;
-    }
+	}
 
 	std::cout << std::endl;
 
-    try {
-        Bureaucrat lowEdge("Selene", 150);
-        std::cout	<< GREEN << "✅ Successfully created: "
+	try {
+		Bureaucrat lowEdge("Selene", 150);
+		std::cout	<< GREEN << "✅ Successfully created: "
 					<< RESET << lowEdge << std::endl;
-        testIncrementDecrement(lowEdge);
-    } catch (const std::exception& e) {
-        std::cerr	<< RED << "⛔ Exception for LowEdge(Selene): "
+		testIncrementDecrement(lowEdge);
+	} catch (const std::exception& e) {
+		std::cerr	<< RED << "⛔ Exception for LowEdge(Selene): "
 					<< RESET << e.what() << std::endl;
-    }
+	}
 
-    std::cout << PURPLE INVERSE << "\n\t--- End of Edge Case Tests ---\n" << RESET << std::endl;
+	std::cout << PURPLE INVERSE << "\n\t--- End of Edge Case Tests ---\n" << RESET << std::endl;
 }
 
 void	testCopyAndAssignment()
@@ -130,17 +131,17 @@ void	testCopyAndAssignment()
 	std::cout << CYAN INVERSE << "\n\t--- Testing Copy and Assignment ---\n" << RESET << std::endl;
 
 	try {
-        Bureaucrat original("Original", 50);
-        Bureaucrat copy(original);
-        Bureaucrat assigned = original;
+		Bureaucrat original("Original", 50);
+		Bureaucrat copy(original);
+		Bureaucrat assigned = original;
 
-        std::cout	<< GREEN << "Original: " << RESET << original << std::endl;
-        std::cout	<< GREEN << "Copy: " << RESET << copy << std::endl;
-        std::cout	<< GREEN << "Assigned: " << RESET << assigned << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr	<< RED << "⛔ Exception during copy or assignment: "
+		std::cout	<< GREEN << "Original: " << RESET << original << std::endl;
+		std::cout	<< GREEN << "Copy: " << RESET << copy << std::endl;
+		std::cout	<< GREEN << "Assigned: " << RESET << assigned << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr	<< RED << "⛔ Exception during copy or assignment: "
 					<< RESET << e.what() << std::endl;
-    }
+	}
 
 	std::cout << CYAN INVERSE << "\n\t--- End of Copy and Assignment ---\n" << RESET << std::endl;
 }
