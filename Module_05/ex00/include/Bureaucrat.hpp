@@ -19,7 +19,7 @@
 # include <cstdlib>
 # include "Colors.hpp"
 
-# define HIGHTEST_GRADE 1
+# define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
 
 class Bureaucrat {

@@ -66,7 +66,7 @@ void	testIncrementDecrement(Bureaucrat& bureaucrat)
 
 void	subjectTests()
 {
-	std::cout << CYAN INVERSE << "\n\t--- Subject Tests ---\n" << RESET << std::endl;
+	std::cout << CYAN INVERSE << "\n\t--- Subject Tests ---" << RESET;
 
 	// Test 1: Create bureaucrat with valid grade
 	createTestBureaucrat("Octavius", 3);
@@ -94,12 +94,12 @@ void	subjectTests()
 	// Test 4: Create bureaucrat with invalid grade
 	createTestBureaucrat("Lucina", 151);
 
-	std::cout << CYAN INVERSE << "\n\t--- End of Subject Tests ---\n" << RESET << std::endl;
+	std::cout << CYAN INVERSE << "\t--- End of Subject Tests ---\n" << RESET << std::endl;
 }
 
 void	edgeCaseTests()
 {
-	std::cout << PURPLE INVERSE << "\n\t--- Edge Case Tests ---\n" << RESET << std::endl;
+	std::cout << PURPLE INVERSE << "\n\t--- Edge Case Tests ---" << RESET << std::endl;
 
 	try {
 		Bureaucrat highEdge("Maximus", 1);
@@ -111,7 +111,7 @@ void	edgeCaseTests()
 					<< RESET << e.what() << std::endl;
 	}
 
-	std::cout << std::endl;
+	std::cout << "-----" << std::endl;
 
 	try {
 		Bureaucrat lowEdge("Selene", 150);
@@ -123,27 +123,53 @@ void	edgeCaseTests()
 					<< RESET << e.what() << std::endl;
 	}
 
-	std::cout << PURPLE INVERSE << "\n\t--- End of Edge Case Tests ---\n" << RESET << std::endl;
+	std::cout << PURPLE INVERSE << "\t--- End of Edge Case Tests ---\n" << RESET << std::endl;
 }
 
 void	testCopyAndAssignment()
 {
-	std::cout << CYAN INVERSE << "\n\t--- Testing Copy and Assignment ---\n" << RESET << std::endl;
+	std::cout << CYAN INVERSE << "\n\t--- Testing Copy and Assignment ---" << RESET;
 
 	try {
-		Bureaucrat original("Original", 50);
-		Bureaucrat copy(original);
-		Bureaucrat assigned = original;
+		std::cout << YELLOW << "\nTesting Bureaucrat Copy and Assignment" << RESET << std::endl;
 
-		std::cout	<< GREEN << "Original: " << RESET << original << std::endl;
-		std::cout	<< GREEN << "Copy: " << RESET << copy << std::endl;
-		std::cout	<< GREEN << "Assigned: " << RESET << assigned << std::endl;
+		Bureaucrat*	original = NULL;
+		Bureaucrat*	copy = NULL;
+		Bureaucrat*	assigned = NULL;
+
+		try { original = new Bureaucrat("Original", 42); }
+		catch (const std::exception &e) {
+			std::cerr	<< RED << "⛔ Bureaucrat Original creation failed: "
+						<< RESET << e.what() << std::endl;
+		}
+		try { if (original) copy = new Bureaucrat(*original); }
+		catch (const std::exception &e) {
+			std::cerr	<< RED << "⛔ Bureaucrat Copy creation failed: "
+						<< RESET << e.what() << std::endl;
+		}
+		try { if (original) assigned = new Bureaucrat(*original); }
+		catch (const std::exception &e) {
+			std::cerr	<< RED << "⛔ Bureaucrat Assignment failed: "
+						<< RESET << e.what() << std::endl;
+		}
+
+		if (original)
+			std::cout << GREEN << "Original: " << RESET << *original << std::endl;
+		if (copy)
+			std::cout << GREEN << "Copy: " << RESET << *copy << std::endl;
+		if (assigned)
+			std::cout << GREEN << "Assigned: " << RESET << *assigned << std::endl;
+
+		delete original;
+		delete copy;
+		delete assigned;
+
 	} catch (const std::exception& e) {
-		std::cerr	<< RED << "⛔ Exception during copy or assignment: "
+		std::cerr	<< RED << "⛔ Exception during Bureaucrat copy or assignment: "
 					<< RESET << e.what() << std::endl;
 	}
 
-	std::cout << CYAN INVERSE << "\n\t--- End of Copy and Assignment ---\n" << RESET << std::endl;
+	std::cout << CYAN INVERSE << "\t--- End of Copy and Assignment ---\n" << RESET << std::endl;
 }
 
 int	main()
@@ -152,14 +178,14 @@ int	main()
 
 	subjectTests();
 
-	std::cout << GREEN INVERSE << "\n\t=== Running Additional tests ===\n" << RESET << std::endl;
+	std::cout << GREEN INVERSE << "\n\t--- Running Additional tests ---" << RESET;
 	createTestBureaucrat("Theon", 1);
 	createTestBureaucrat("Drusus", 150);
 	createTestBureaucrat("Eurydice", 0);
 	createTestBureaucrat("Valeria", 151);
 	createTestBureaucrat("Atticus", -10);
 	createTestBureaucrat("Cornelia", 42);
-	std::cout << GREEN INVERSE << "\n\t--- End of Additional test ---\n" << RESET << std::endl;
+	std::cout << GREEN INVERSE << "\t--- End of Additional test ---\n" << RESET << std::endl;
 
 	edgeCaseTests();
 

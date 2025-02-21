@@ -18,10 +18,9 @@
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(LOWEST_GRADE) {}
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name),
-															_grade(grade) {
-	checkGrade(_grade);
-	this->_grade = grade;
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name) {
+	checkGrade(grade);
+	_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) :	_name(other._name),
@@ -67,7 +66,7 @@ int	Bureaucrat::getGrade(void) const {
 /* -------------------------------------------------------------------------- */
 
 void	Bureaucrat::checkGrade(int gradeValue) const {
-	if (gradeValue < HIGHTEST_GRADE) {
+	if (gradeValue < HIGHEST_GRADE) {
 		throw GradeTooHighException();
 	}
 	if (gradeValue > LOWEST_GRADE) {
@@ -79,20 +78,26 @@ void	Bureaucrat::checkGrade(int gradeValue) const {
 /*                              MEMBER FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
+void	Bureaucrat::incrementGrade() {
+	if (_grade - 1 < HIGHEST_GRADE)
+		throw GradeTooHighException();
+	_grade--;
+}
+
+void	Bureaucrat::decrementGrade() {
+	if (_grade + 1 > LOWEST_GRADE)
+		throw GradeTooLowException();
+	_grade++;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            EXCEPTION MESSAGES                              */
+/* -------------------------------------------------------------------------- */
+
 const char*	Bureaucrat::GradeTooHighException::what() const throw() {
 	return (UNDERLINE PURPLE "Grade is too high!" RESET " Must be between 1 and 150.");
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const throw() {
 	return (UNDERLINE PURPLE "Grade is too low!" RESET " Must be between 1 and 150.");
-}
-
-void	Bureaucrat::incrementGrade() {
-	checkGrade(_grade - 1);
-	_grade--;
-}
-
-void	Bureaucrat::decrementGrade() {
-	checkGrade(_grade + 1);
-	_grade++;
 }

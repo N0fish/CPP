@@ -19,8 +19,10 @@
 # include <cstdlib>
 # include "Colors.hpp"
 
-# define HIGHTEST_GRADE 1
+# define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
+
+class Form;
 
 class Bureaucrat {
 	private:
@@ -40,7 +42,6 @@ class Bureaucrat {
 		const std::string	&getName(void) const;
 		int					getGrade(void) const;
 
-		// Exceptions|nested class
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
@@ -51,12 +52,12 @@ class Bureaucrat {
 				virtual const char* what() const throw();
 		};
 
-		// Member
 		void	incrementGrade();
 		void	decrementGrade();
+
+		void	signForm(Form &form);
 };
 
-// Overload outstream operator
 std::ostream&	operator<<(std::ostream &out, const Bureaucrat &obj);
 
 #endif

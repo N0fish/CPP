@@ -12,8 +12,8 @@
 
 NAME = AForm
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJDIR = ./obj/
 SRCDIR = ./srcs/
@@ -26,11 +26,11 @@ OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJDIR)%.o: $(SRCDIR)%.cpp
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
 
 clean:
 	rm -rf $(OBJDIR)

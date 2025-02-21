@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                      CONSTRUCTORS & DESTRUCTORS                            */
@@ -18,10 +19,9 @@
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(LOWEST_GRADE) {}
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name),
-															_grade(grade) {
-	checkGrade(_grade);
-	this->_grade = grade;
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name) {
+	checkGrade(grade);
+	_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) :	_name(other._name),
@@ -41,8 +41,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
 }
 
 std::ostream&	operator<<(std::ostream &out, const Bureaucrat &obj) {
-	out	<< WHITE_BACKGROUND
-		<< obj.getName() << RESET
+	out	<< obj.getName()
 		<< ", bureaucrat grade "
 		<< WHITE_BACKGROUND
 		<< obj.getGrade() << RESET
@@ -67,7 +66,7 @@ int	Bureaucrat::getGrade(void) const {
 /* -------------------------------------------------------------------------- */
 
 void	Bureaucrat::checkGrade(int gradeValue) const {
-	if (gradeValue < HIGHTEST_GRADE) {
+	if (gradeValue < HIGHEST_GRADE) {
 		throw GradeTooHighException();
 	}
 	if (gradeValue > LOWEST_GRADE) {
@@ -79,14 +78,6 @@ void	Bureaucrat::checkGrade(int gradeValue) const {
 /*                              MEMBER FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
-const char*	Bureaucrat::GradeTooHighException::what() const throw() {
-	return (UNDERLINE PURPLE "Grade is too high!" RESET " Must be between 1 and 150.");
-}
-
-const char*	Bureaucrat::GradeTooLowException::what() const throw() {
-	return (UNDERLINE PURPLE "Grade is too low!" RESET " Must be between 1 and 150.");
-}
-
 void	Bureaucrat::incrementGrade() {
 	checkGrade(_grade - 1);
 	_grade--;
@@ -95,4 +86,33 @@ void	Bureaucrat::incrementGrade() {
 void	Bureaucrat::decrementGrade() {
 	checkGrade(_grade + 1);
 	_grade++;
+}
+
+void	Bureaucrat::signForm(Form &form) {
+	try {
+		form.beSigned(*this);
+		std::cout	<< _name << " signed "
+					<< WHITE_BACKGROUND "✔️" RESET " "
+					<< form.getName()
+					<< std::endl;
+	} catch (const std::exception &e) {
+		std::cout	<< _name
+					<< " couldn't sign "
+					<< WHITE_BACKGROUND "✖️" RESET " "
+					<< form.getName()
+					<< " because " << e.what()
+					<< std::endl;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            EXCEPTION MESSAGES                              */
+/* -------------------------------------------------------------------------- */
+
+const char*	Bureaucrat::GradeTooHighException::what() const throw() {
+	return (UNDERLINE PURPLE "Grade is too high!" RESET " Must be between 1 and 150.");
+}
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw() {
+	return (UNDERLINE PURPLE "Grade is too low!" RESET " Must be between 1 and 150.");
 }
