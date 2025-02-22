@@ -13,10 +13,6 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include <string>
-# include <iostream>
-# include <exception>
-# include <cstdlib>
 # include "Colors.hpp"
 
 # define HIGHEST_GRADE 1

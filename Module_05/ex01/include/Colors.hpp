@@ -13,6 +13,12 @@
 #ifndef COLORS_HPP
 # define COLORS_HPP
 
+# include <string>
+# include <iostream>
+# include <exception>
+// # include <stdexcept>
+# include <cstdlib>
+
 # define BOLD "\e[1m"
 # define DIM "\e[2m"
 # define ITALIC "\e[3m"

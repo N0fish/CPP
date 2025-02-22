@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                      CONSTRUCTORS & DESTRUCTORS                            */
@@ -48,8 +49,8 @@ Form&	Form::operator=(const Form& other) {
 }
 
 std::ostream&	operator<<(std::ostream& out, const Form& form) {
-	out	<< "Form: " << form.getName()
-		<< ", Signed: " << (form.getIsSigned() ? "Yes" : "No")
+	out	<< "Form: " DIM << form.getName() << RESET
+		<< ", Signed: " DIM << (form.getIsSigned() ? "Yes" : "No") << RESET
 		<< ", Required Grade to Sign: " << WHITE_BACKGROUND << form.getGradeToSign() << RESET
 		<< ", Required Grade to Execute: " << WHITE_BACKGROUND << form.getGradeToExecute() << RESET;
 	return (out);
@@ -101,9 +102,9 @@ void Form::beSigned(const Bureaucrat& bureaucrat) {
 /* -------------------------------------------------------------------------- */
 
 const char* Form::GradeTooHighException::what() const throw() {
-	return (UNDERLINE YELLOW "Grade is too high!" RESET);
+	return (UNDERLINE YELLOW "grade is too high!" RESET);
 }
 
 const char* Form::GradeTooLowException::what() const throw() {
-	return (UNDERLINE YELLOW "Grade is too low!" RESET);
+	return (UNDERLINE YELLOW "grade is too low!" RESET);
 }

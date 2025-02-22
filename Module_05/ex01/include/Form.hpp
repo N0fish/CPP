@@ -13,7 +13,9 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 
-# include "Bureaucrat.hpp"
+# include "Colors.hpp"
+
+class Bureaucrat;
 
 class Form {
 	private:
@@ -47,7 +49,7 @@ class Form {
 		class GradeTooLowException : public std::exception {
 			public:
 				virtual const char*	what() const throw();
-		};
+		};			
 };
 
 std::ostream&	operator<<(std::ostream& out, const Form& form);

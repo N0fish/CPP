@@ -145,20 +145,36 @@ void	testCopyAndAssignment() {
 
 void	testFormSigning(Bureaucrat* lowRank, Bureaucrat* midRank, Bureaucrat* highRank, \
 						Form* f1, Form* f2, Form* f3) {
-	if (lowRank && f1)
+	if (lowRank && f1) {
 		testSignForm(*lowRank, *f1);
-	if (midRank && f1)
+		std::cout << "📄 " << *f1 << std::endl;
+		// if (f1->getIsSigned())
+		// 	std::cout << GREEN << "✅ Form is signed!" << RESET << std::endl;
+		// else
+		// 	std::cout << RED << "❌ Form is NOT signed!" << RESET << std::endl;
+	}
+	if (midRank && f1) {
 		testSignForm(*midRank, *f1);
-	if (highRank && f1)
+		std::cout << "📄 " << *f1 << std::endl;
+	}
+	if (highRank && f1) {
 		testSignForm(*highRank, *f1);
+		std::cout << "📄 " << *f1 << std::endl;
+	}
+	std::cout << "-----" << std::endl;
 
+	if (lowRank && f2)
+	testSignForm(*lowRank, *f2);
 	if (midRank && f2)
 		testSignForm(*midRank, *f2);
 	if (highRank && f2)
 		testSignForm(*highRank, *f2);
+	std::cout << "-----" << std::endl;
 
 	if (lowRank && f3)
 		testSignForm(*lowRank, *f3);
+	if (midRank && f3)
+		testSignForm(*midRank, *f3);
 	if (highRank && f3)
 		testSignForm(*highRank, *f3);
 }
@@ -172,16 +188,26 @@ void	setupBureaucratsAndForms() {
 
 	try { lowRank = new Bureaucrat("Trainee", 140); }
 	catch (const std::exception &e) {
-		std::cerr << RED << "⛔ Bureaucrat Trainee creation failed: " << RESET << e.what() << std::endl;
+		std::cerr	<< RED << "\n⛔ Bureaucrat Trainee creation failed: "
+					<< RESET << e.what() << std::endl;
 	}
 	try { midRank = new Bureaucrat("Manager", 50); }
 	catch (const std::exception &e) {
-		std::cerr << RED << "⛔ Bureaucrat Manager creation failed: " << RESET << e.what() << std::endl;
+		std::cerr	<< RED << "\n⛔ Bureaucrat Manager creation failed: "
+					<< RESET << e.what() << std::endl;
 	}
 	try { highRank = new Bureaucrat("Director", 1); }
 	catch (const std::exception &e) {
-		std::cerr << RED << "⛔ Bureaucrat Director creation failed: " << RESET << e.what() << std::endl;
+		std::cerr	<< RED << "\n⛔ Bureaucrat Director creation failed: "
+					<< RESET << e.what() << std::endl;
 	}
+	std::cout << BLUE << "\n📌 Bureaucrats:" << RESET << std::endl;
+	if (lowRank)
+		std::cout << "🔹 " << *lowRank << std::endl;
+	if (midRank)
+		std::cout << "🔹 " << *midRank << std::endl;
+	if (highRank)
+		std::cout << "🔹 " << *highRank << std::endl;
 
 	Form*	easyForm = NULL;
 	Form*	mediumForm = NULL;
@@ -189,16 +215,26 @@ void	setupBureaucratsAndForms() {
 
 	try { easyForm = new Form("Vacation Request", 130, 100); }
 	catch (const std::exception &e) {
-		std::cerr << RED << "⛔ Form Vacation Request creation failed: " << RESET << e.what() << std::endl;
+		std::cerr	<< RED << "\n⛔ Form Vacation Request creation failed: "
+					<< RESET << e.what() << std::endl;
 	}
 	try { mediumForm = new Form("Budget Approval", 50, 25); }
 	catch (const std::exception &e) {
-		std::cerr << RED << "⛔ Form Budget Approval creation failed: " << RESET << e.what() << std::endl;
+		std::cerr	<< RED << "\n⛔ Form Budget Approval creation failed: "
+					<< RESET << e.what() << std::endl;
 	}
 	try { hardForm = new Form("Top Secret Document", 10, 5); }
 	catch (const std::exception &e) {
-		std::cerr << RED << "⛔ Form Top Secret Document creation failed: " << RESET << e.what() << std::endl;
+		std::cerr	<< RED << "\n⛔ Form Top Secret Document creation failed: "
+					<< RESET << e.what() << std::endl;
 	}
+	std::cout << CYAN << "📌 Forms and Requirements:" << RESET << std::endl;
+	if (easyForm)
+		std::cout << "📄 " << *easyForm << std::endl;
+	if (mediumForm)
+		std::cout << "📄 " << *mediumForm << std::endl;
+	if (hardForm)
+		std::cout << "📄 " << *hardForm << std::endl;
 
 	testFormSigning(lowRank, midRank, highRank, easyForm, mediumForm, hardForm);
 

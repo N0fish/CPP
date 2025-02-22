@@ -41,7 +41,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
 }
 
 std::ostream&	operator<<(std::ostream &out, const Bureaucrat &obj) {
-	out	<< obj.getName()
+	out	<< DIM << obj.getName() << RESET
 		<< ", bureaucrat grade "
 		<< WHITE_BACKGROUND
 		<< obj.getGrade() << RESET
@@ -91,16 +91,15 @@ void	Bureaucrat::decrementGrade() {
 void	Bureaucrat::signForm(Form &form) {
 	try {
 		form.beSigned(*this);
-		std::cout	<< _name << " signed "
-					<< WHITE_BACKGROUND "✔️" RESET " "
-					<< form.getName()
+		std::cout	<< _name
+					<< " signed "
+					<< form.getName() <<  " ✔️"
 					<< std::endl;
 	} catch (const std::exception &e) {
 		std::cout	<< _name
 					<< " couldn't sign "
-					<< WHITE_BACKGROUND "✖️" RESET " "
 					<< form.getName()
-					<< " because " << e.what()
+					<< " because " << e.what() <<  " ✖️"
 					<< std::endl;
 	}
 }
@@ -110,9 +109,9 @@ void	Bureaucrat::signForm(Form &form) {
 /* -------------------------------------------------------------------------- */
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw() {
-	return (UNDERLINE PURPLE "Grade is too high!" RESET " Must be between 1 and 150.");
+	return (UNDERLINE PURPLE "grade is too high!" RESET " Must be between 1 and 150.");
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const throw() {
-	return (UNDERLINE PURPLE "Grade is too low!" RESET " Must be between 1 and 150.");
+	return (UNDERLINE PURPLE "grade is too low!" RESET " Must be between 1 and 150.");
 }
