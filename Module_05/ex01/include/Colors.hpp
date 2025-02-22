@@ -16,7 +16,6 @@
 # include <string>
 # include <iostream>
 # include <exception>
-// # include <stdexcept>
 # include <cstdlib>
 
 # define BOLD "\e[1m"
