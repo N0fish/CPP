@@ -1,58 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 00:52:03 by algultse          #+#    #+#             */
-/*   Updated: 2025/02/20 17:58:09 by algultse         ###   ########.fr       */
+/*   Created: 2025/01/22 17:40:42 by algultse          #+#    #+#             */
+/*   Updated: 2025/02/22 16:29:16 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                      CONSTRUCTORS & DESTRUCTORS                            */
 /* -------------------------------------------------------------------------- */
 
-Form::Form() :	_name("Default"),
-				_isSigned(false),
-				_gradeToSign(LOWEST_GRADE),
-				_gradeToExecute(LOWEST_GRADE) {}
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(LOWEST_GRADE) {}
 
-Form::Form(const std::string &name, int gradeToSign, int gradeToExecute) 
-				:	_name(name),
-					_isSigned(false),
-					_gradeToSign(checkGrade(gradeToSign)),
-					_gradeToExecute(checkGrade(gradeToExecute)) {}
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name) {
+	checkGrade(grade);
+	_grade = grade;
+}
 
-Form::Form(const Form& other) 
-				:	_name(other._name),
-					_isSigned(false), 
-					_gradeToSign(other._gradeToSign),
-					_gradeToExecute(other._gradeToExecute) {}
+Bureaucrat::Bureaucrat(const Bureaucrat& other) :	_name(other._name),
+													_grade(other._grade) {}
 
-
-Form::~Form() {}
+Bureaucrat::~Bureaucrat() {}
 
 /* -------------------------------------------------------------------------- */
 /*                                 OPERATORS                                  */
 /* -------------------------------------------------------------------------- */
 
-Form&	Form::operator=(const Form& other) {
-	if (this != &other) {
-		_isSigned = false;
-	}
+Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
+	if (this != &other)
+		this->_grade = other._grade;
 	return (*this);
 }
 
-std::ostream&	operator<<(std::ostream& out, const Form& form) {
-	out	<< "Form: " DIM << form.getName() << RESET
-		<< ", Signed: " DIM << (form.getIsSigned() ? "Yes" : "No") << RESET
-		<< ", Required Grade to Sign: " << WHITE_BACKGROUND << form.getGradeToSign() << RESET
-		<< ", Required Grade to Execute: " << WHITE_BACKGROUND << form.getGradeToExecute() << RESET;
+std::ostream&	operator<<(std::ostream &out, const Bureaucrat &obj) {
+	out	<< DIM << obj.getName() << RESET
+		<< ", bureaucrat grade "
+		<< WHITE_BACKGROUND
+		<< obj.getGrade() << RESET
+		<< ".";
 	return (out);
 }
 
@@ -60,51 +52,78 @@ std::ostream&	operator<<(std::ostream& out, const Form& form) {
 /*                             GETTERS and SETTERS                            */
 /* -------------------------------------------------------------------------- */
 
-const std::string&	Form::getName() const {
+const std::string	&Bureaucrat::getName(void) const {
 	return (_name);
 }
 
-bool	Form::getIsSigned() const {
-	return (_isSigned);
-}
-
-int	Form::getGradeToSign() const {
-	return (_gradeToSign);
-}
-int	Form::getGradeToExecute() const {
-	return (_gradeToExecute);
+int	Bureaucrat::getGrade(void) const {
+	return (_grade);
 }
 
 /* -------------------------------------------------------------------------- */
 /*                             PRIVATE FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
-int Form::checkGrade(int grade) const {
-	if (grade < HIGHEST_GRADE)
+void	Bureaucrat::checkGrade(int gradeValue) const {
+	if (gradeValue < HIGHEST_GRADE) {
 		throw GradeTooHighException();
-	if (grade > LOWEST_GRADE)
+	}
+	if (gradeValue > LOWEST_GRADE) {
 		throw GradeTooLowException();
-	return (grade);
+	}
 }
 
 /* -------------------------------------------------------------------------- */
 /*                              MEMBER FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
-void Form::beSigned(const Bureaucrat& bureaucrat) {
-	if (bureaucrat.getGrade() > _gradeToSign)
-		throw GradeTooLowException();
-	_isSigned = true;
+void	Bureaucrat::incrementGrade() {
+	checkGrade(_grade - 1);
+	_grade--;
+}
+
+void	Bureaucrat::decrementGrade() {
+	checkGrade(_grade + 1);
+	_grade++;
+}
+
+void	Bureaucrat::signForm(AForm &form) {
+	try {
+		form.beSigned(*this);
+		std::cout	<< _name
+					<< " signed "
+					<< form.getName() <<  " ✔️"
+					<< std::endl;
+	} catch (const std::exception &e) {
+		std::cerr	<< _name
+					<< " couldn't sign " << form.getName()
+					<< " because " << e.what() <<  " ✖️"
+					<< std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const &form) {
+	try {
+		form.execute(*this);
+		std::cout	<< _name
+					<< " executed " << form.getName()
+					<< std::endl;
+	} catch (const std::exception &e) {
+		std::cerr	<< _name
+					<< " couldn't execute " << form.getName()
+					<< " because " << e.what()
+					<< std::endl;
+	}
 }
 
 /* -------------------------------------------------------------------------- */
 /*                            EXCEPTION MESSAGES                              */
 /* -------------------------------------------------------------------------- */
 
-const char* Form::GradeTooHighException::what() const throw() {
-	return (UNDERLINE YELLOW "grade is too high!" RESET);
+const char	*Bureaucrat::GradeTooHighException::what() const throw() {
+	return (UNDERLINE PURPLE "grade is too high!" RESET " Must be between 1 and 150.");
 }
 
-const char* Form::GradeTooLowException::what() const throw() {
-	return (UNDERLINE YELLOW "grade is too low!" RESET);
+const char	*Bureaucrat::GradeTooLowException::what() const throw() {
+	return (UNDERLINE PURPLE "grade is too low!" RESET " Must be between 1 and 150.");
 }

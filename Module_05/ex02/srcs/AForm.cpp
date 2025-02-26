@@ -10,45 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                      CONSTRUCTORS & DESTRUCTORS                            */
 /* -------------------------------------------------------------------------- */
 
-Form::Form() :	_name("Default"),
+AForm::AForm() :	_name("Default"),
 				_isSigned(false),
 				_gradeToSign(LOWEST_GRADE),
 				_gradeToExecute(LOWEST_GRADE) {}
 
-Form::Form(const std::string &name, int gradeToSign, int gradeToExecute) 
+AForm::AForm(const std::string &name, int gradeToSign, int gradeToExecute) 
 				:	_name(name),
 					_isSigned(false),
 					_gradeToSign(checkGrade(gradeToSign)),
 					_gradeToExecute(checkGrade(gradeToExecute)) {}
 
-Form::Form(const Form& other) 
+AForm::AForm(const AForm& other) 
 				:	_name(other._name),
 					_isSigned(false), 
 					_gradeToSign(other._gradeToSign),
 					_gradeToExecute(other._gradeToExecute) {}
 
 
-Form::~Form() {}
+AForm::~AForm() {}
 
 /* -------------------------------------------------------------------------- */
 /*                                 OPERATORS                                  */
 /* -------------------------------------------------------------------------- */
 
-Form&	Form::operator=(const Form& other) {
+AForm&	AForm::operator=(const AForm& other) {
 	if (this != &other) {
 		_isSigned = false;
 	}
 	return (*this);
 }
 
-std::ostream&	operator<<(std::ostream& out, const Form& form) {
+std::ostream&	operator<<(std::ostream& out, const AForm& form) {
 	out	<< "Form: " DIM << form.getName() << RESET
 		<< ", Signed: " DIM << (form.getIsSigned() ? "Yes" : "No") << RESET
 		<< ", Required Grade to Sign: " << WHITE_BACKGROUND << form.getGradeToSign() << RESET
@@ -60,18 +60,18 @@ std::ostream&	operator<<(std::ostream& out, const Form& form) {
 /*                             GETTERS and SETTERS                            */
 /* -------------------------------------------------------------------------- */
 
-const std::string&	Form::getName() const {
+const std::string&	AForm::getName() const {
 	return (_name);
 }
 
-bool	Form::getIsSigned() const {
+bool	AForm::getIsSigned() const {
 	return (_isSigned);
 }
 
-int	Form::getGradeToSign() const {
+int	AForm::getGradeToSign() const {
 	return (_gradeToSign);
 }
-int	Form::getGradeToExecute() const {
+int	AForm::getGradeToExecute() const {
 	return (_gradeToExecute);
 }
 
@@ -79,7 +79,7 @@ int	Form::getGradeToExecute() const {
 /*                             PRIVATE FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
-int Form::checkGrade(int grade) const {
+int AForm::checkGrade(int grade) const {
 	if (grade < HIGHEST_GRADE)
 		throw GradeTooHighException();
 	if (grade > LOWEST_GRADE)
@@ -91,20 +91,40 @@ int Form::checkGrade(int grade) const {
 /*                              MEMBER FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
-void Form::beSigned(const Bureaucrat& bureaucrat) {
+void AForm::beSigned(const Bureaucrat& bureaucrat) {
+	// if (_isSigned) {
+	// 	throw AlreadySignedException();
+	// }
 	if (bureaucrat.getGrade() > _gradeToSign)
 		throw GradeTooLowException();
 	_isSigned = true;
+}
+
+void AForm::execute(const Bureaucrat& executor) const {
+	if (!_isSigned)
+		throw FormNotSignedException();
+	if (executor.getGrade() > _gradeToExecute)
+		throw GradeTooLowException();
+	// Здесь вызывается специфическое действие формы, которое реализуется в наследниках
+	this->action();
 }
 
 /* -------------------------------------------------------------------------- */
 /*                            EXCEPTION MESSAGES                              */
 /* -------------------------------------------------------------------------- */
 
-const char* Form::GradeTooHighException::what() const throw() {
+const char	*AForm::GradeTooHighException::what() const throw() {
 	return (UNDERLINE YELLOW "grade is too high!" RESET);
 }
 
-const char* Form::GradeTooLowException::what() const throw() {
+const char	*AForm::GradeTooLowException::what() const throw() {
 	return (UNDERLINE YELLOW "grade is too low!" RESET);
 }
+
+const char	*AForm::FormNotSignedException::what() const throw() {
+	return (UNDERLINE RED "form is not signed!" RESET);
+}
+
+// const char* AForm::AlreadySignedException::what() const throw() {
+// 	return (UNDERLINE GREEN "form is already signed!" RESET);
+// }

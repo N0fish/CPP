@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include "Colors.hpp"
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 	private:
 		const std::string	_name;
 		bool				_isSigned;
@@ -26,13 +26,16 @@ class Form {
 
 		int	checkGrade(int grade) const;
 
-	public:
-		Form();
-		Form(const Form &other);
-		Form(const std::string	&name, const int gradeToSign, const int gradeToExecute);
-		~Form();
+	protected:
+		virtual void action() const = 0;
 
-		Form&	operator=(const Form& other);
+	public:
+		AForm();
+		AForm(const AForm &other);
+		AForm(const std::string	&name, const int gradeToSign, const int gradeToExecute);
+		virtual ~AForm();
+
+		AForm&	operator=(const AForm& other);
 
 		const std::string	&getName(void) const;
 		bool				getIsSigned(void) const;
@@ -50,8 +53,20 @@ class Form {
 			public:
 				virtual const char*	what() const throw();
 		};
+
+		class FormNotSignedException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		// class AlreadySignedException : public std::exception {
+		// 	public:
+		// 		virtual const char* what() const throw();
+		// 	};	
+		
+		virtual void execute(const Bureaucrat& executor) const;
 };
 
-std::ostream&	operator<<(std::ostream& out, const Form& form);
+std::ostream&	operator<<(std::ostream& out, const AForm& form);
 
 #endif
