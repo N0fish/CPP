@@ -57,7 +57,7 @@ std::ostream	&operator<<(std::ostream &str, PresidentialPardonForm const &form) 
 /* -------------------------------------------------------------------------- */
 
 void	PresidentialPardonForm::action() const {
-	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	std::cout << "Informs that " << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */

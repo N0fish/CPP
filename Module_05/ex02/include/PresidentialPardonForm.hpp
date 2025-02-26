@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 15:12:49 by algultse          #+#    #+#             */
-/*   Updated: 2025/02/25 17:52:08 by algultse         ###   ########.fr       */
+/*   Created: 2025/02/25 17:10:08 by algultse          #+#    #+#             */
+/*   Updated: 2025/02/26 20:52:31 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ class PresidentialPardonForm : public AForm {
 		~PresidentialPardonForm();
 
 		PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
-
-		std::string	&getTarget(void);
 		
 		static int const	gradeToSign = 25;
 		static int const	gradeToExecute = 5;

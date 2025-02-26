@@ -45,7 +45,7 @@ void	createTestForm(const std::string& name, int gradeToSign, int gradeToExecute
 
 void	testSignForm(Bureaucrat& bureaucrat, Form& form) {
 	std::cout	<< BLUE << "\nBureaucrat \"" << bureaucrat.getName()
-	        	<< "\" attempts to sign form \"" << form.getName()
+				<< "\" attempts to sign form \"" << form.getName()
 				<< "\"..." << RESET << std::endl;
 
 	bureaucrat.signForm(form);

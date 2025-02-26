@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 00:52:03 by algultse          #+#    #+#             */
-/*   Updated: 2025/02/20 17:58:09 by algultse         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:58:09 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	AForm::getGradeToExecute() const {
 /*                             PRIVATE FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
-int AForm::checkGrade(int grade) const {
+int	AForm::checkGrade(int grade) const {
 	if (grade < HIGHEST_GRADE)
 		throw GradeTooHighException();
 	if (grade > LOWEST_GRADE)
@@ -91,7 +91,7 @@ int AForm::checkGrade(int grade) const {
 /*                              MEMBER FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
 
-void AForm::beSigned(const Bureaucrat& bureaucrat) {
+void	AForm::beSigned(const Bureaucrat& bureaucrat) {
 	// if (_isSigned) {
 	// 	throw AlreadySignedException();
 	// }
@@ -100,12 +100,12 @@ void AForm::beSigned(const Bureaucrat& bureaucrat) {
 	_isSigned = true;
 }
 
-void AForm::execute(const Bureaucrat& executor) const {
+void	AForm::execute(const Bureaucrat& executor) const {
 	if (!_isSigned)
 		throw FormNotSignedException();
 	if (executor.getGrade() > _gradeToExecute)
 		throw GradeTooLowException();
-	// Здесь вызывается специфическое действие формы, которое реализуется в наследниках
+
 	this->action();
 }
 
