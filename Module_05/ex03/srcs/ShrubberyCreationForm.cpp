@@ -82,6 +82,10 @@ void ShrubberyCreationForm::action() const {
 	std::cout << "✅ File created: " << this->_target << "_shrubbery" << std::endl;
 }
 
+AForm	*ShrubberyCreationForm::create(const std::string &target) {
+	return (new ShrubberyCreationForm(target));
+}
+
 /* -------------------------------------------------------------------------- */
 /*                            EXCEPTION MESSAGES                              */
 /* -------------------------------------------------------------------------- */

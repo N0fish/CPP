@@ -37,6 +37,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.cpp
 
 clean:
 	rm -rf $(OBJDIR)
+# rm -f *_shrubbery
 
 fclean: clean
 	rm -f $(NAME)

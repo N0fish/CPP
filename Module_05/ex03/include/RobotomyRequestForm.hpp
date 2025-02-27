@@ -37,6 +37,8 @@ class RobotomyRequestForm : public AForm {
 			public:
 				virtual const char* what() const throw();
 		};
+
+		static AForm	*create(const std::string &target);
 };
 
 std::ostream	&operator<<(std::ostream &str, RobotomyRequestForm const &form);

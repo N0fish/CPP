@@ -64,6 +64,10 @@ void	RobotomyRequestForm::action() const {
 	}
 }
 
+AForm	*RobotomyRequestForm::create(const std::string &target) {
+	return (new RobotomyRequestForm(target));
+}
+
 /* -------------------------------------------------------------------------- */
 /*                            EXCEPTION MESSAGES                              */
 /* -------------------------------------------------------------------------- */

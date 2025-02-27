@@ -6,7 +6,7 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/22 22:58:54 by algultse          #+#    #+#              #
-#    Updated: 2025/01/22 23:58:08 by algultse         ###   ########.fr        #
+#    Updated: 2025/01/26 23:41:30 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ INCDIR = ./include/
 SRC = Bureaucrat.cpp AForm.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
-		PresidentialPardonForm.cpp main.cpp
-# Intern.cpp
-# main.cpp
+		PresidentialPardonForm.cpp \
+		Intern.cpp \
+		main.cpp
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
@@ -38,6 +38,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.cpp
 
 clean:
 	rm -rf $(OBJDIR)
+# rm -f *_shrubbery
 
 fclean: clean
 	rm -f $(NAME)
