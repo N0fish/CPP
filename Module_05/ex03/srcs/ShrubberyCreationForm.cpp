@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:29 by algultse          #+#    #+#             */
-/*   Updated: 2025/02/23 20:11:32 by algultse         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:59:41 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ std::ostream	&operator<<(std::ostream &str, ShrubberyCreationForm const &form) {
 /* -------------------------------------------------------------------------- */
 
 void ShrubberyCreationForm::action() const {
-	std::ofstream outfile(this->_target + "_shrubbery");
+	std::ofstream outfile((this->_target + "_shrubbery").c_str());
 
 	if (_target.empty())
 		throw TargetEmptyException();
