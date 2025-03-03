@@ -37,11 +37,8 @@ ScalarConverter::ScalarConverter(const ScalarConverter&) {}
 ScalarConverter::~ScalarConverter() {}
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter&) { return (*this); }
 
-// bool	ScalarConverter::isChar(const std::string &s) {
-// 	return (s.length() == 1 && std::isprint(s[0]) && !std::isdigit(s[0]));
-// }
 bool ScalarConverter::isChar(const std::string &s) {
-    return (s.length() == 3 && s[0] == '\'' && s[2] == '\'' && std::isprint(s[1]));
+	return (s.length() == 3 && s[0] == '\'' && s[2] == '\'' && std::isprint(s[1]));
 }
 
 bool ScalarConverter::isNumber(const std::string &s) {
@@ -51,77 +48,129 @@ bool ScalarConverter::isNumber(const std::string &s) {
 	if (s[s.length() - 1] == 'f' && s.length() > 1) {
 		std::string withoutF = s.substr(0, s.length() - 1);
 		char *end;
-		std::strtod(withoutF.c_str(), &end);
-		return (*end == '\0');
+		double floatValue = std::strtod(withoutF.c_str(), &end);
+		if (*end == '\0') {
+			if (floatValue > FLT_MAX || floatValue < -FLT_MAX)
+				return false;
+			return true;
+		}
 	}
 
+	// char *end;
+	// double value = std::strtod(s.c_str(), &end);
+	// if (value > FLT_MAX || value < -FLT_MAX)
+	// 	return false;
+	// if (*end != '\0') {
+	// 	return false;
+	// }
+	// return true;
+
 	char *end;
-	std::strtod(s.c_str(), &end);
-	return (*end == '\0');
+	errno = 0;
+	double value = std::strtod(s.c_str(), &end);
+
+	if (errno == ERANGE || value == HUGE_VAL || value == -HUGE_VAL) {
+		return false;
+	}
+	if (*end != '\0') {
+		return false;
+	}
+	return true;
+
+
 }
 
 bool ScalarConverter::isException(const std::string &s) {
 	return (s == "nan" || s == "nanf" ||
-	        s == "+inf" || s == "-inf" ||
-	        s == "+inff" || s == "-inff");
+			s == "+inf" || s == "-inf" ||
+			s == "+inff" || s == "-inff");
 }
 
 void ScalarConverter::printChar(const std::string &literal) {
-    char c = literal[1]; // Используем второй символ в строке (между кавычками)
-    std::cout << "char: '" << c << "'" << std::endl;
-    std::cout << "int: " << static_cast<int>(c) << std::endl;
-    std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl;
-    std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
+	char c = literal[1]; // Используем второй символ в строке (между кавычками)
+	std::cout << "char: '" << c << "'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
 }
 
 void ScalarConverter::printNumber(const std::string &literal) {
-    bool isFloat = (literal.back() == 'f');
-    std::string number = literal;
-    if (isFloat) number = literal.substr(0, literal.size() - 1);
+	bool isFloat = (literal.back() == 'f');
+	std::string number = literal;
+	if (isFloat) number = literal.substr(0, literal.size() - 1);
 
-    char	*end;
-    errno = 0;
-    double	valueDouble = std::strtod(number.c_str(), &end);
+	// if (number.length() > 309) {  // Максимальная длина DBL_MAX ≈ 1.79e308 (309 символов)
+	// 	std::cout << "char: impossible" << std::endl;
+	// 	std::cout << "int: impossible" << std::endl;
+	// 	std::cout << "float: impossible" << std::endl;
+	// 	std::cout << "double: impossible" << std::endl;
+	// 	return;
+	// }
 
-    if (errno == ERANGE || valueDouble == HUGE_VAL || valueDouble == -HUGE_VAL) {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
-        return;
-    }
+	char	*end;
+	errno = 0;
+	double	valueDouble = std::strtod(number.c_str(), &end);
 
-    int valueInt = static_cast<int>(valueDouble);
+	if (errno == ERANGE || valueDouble == HUGE_VAL || valueDouble == -HUGE_VAL || number.length() > 17) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return ;
+	}
 
-    std::cout << "char: ";
-    if (valueDouble < 0 || valueDouble > 127 || valueInt != valueDouble)
-        std::cout << "impossible";
-    else if (std::isprint(valueInt))
-        std::cout << "'" << static_cast<char>(valueInt) << "'";
-    else
-        std::cout << "Non displayable";
-    std::cout << std::endl;
+	// if (*end != '\0') {
+	// 	std::cout << "Invalid Type!" << std::endl;
+	// 	return;
+	// }
 
-    std::cout << "int: ";
-    if (valueDouble > INT_MAX || valueDouble < INT_MIN)
-        std::cout << "impossible";
-    else
-        std::cout << valueInt;
-    std::cout << std::endl;
+	if (valueDouble == 0.0 && (literal.find('.') != std::string::npos || isFloat)) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: 0.0f" << std::endl;
+		std::cout << "double: 0.0" << std::endl;
+		return ;
+	}
 
-    std::cout << "float: ";
-    if (valueDouble > FLT_MAX || valueDouble < -FLT_MAX)
-        std::cout << "impossible";
-    else
-        std::cout << std::fixed << std::setprecision(1) << static_cast<float>(valueDouble) << "f";
-    std::cout << std::endl;
+	int valueInt = static_cast<int>(valueDouble);
 
-    std::cout << "double: " << std::fixed << std::setprecision(1) << valueDouble << std::endl;
+	std::cout << "char: ";
+	if (valueDouble < 0 || valueDouble > 127 || valueInt != valueDouble)
+		std::cout << "impossible";
+	else if (std::isprint(valueInt))
+		std::cout << "'" << static_cast<char>(valueInt) << "'";
+	else
+		std::cout << "Non displayable";
+	std::cout << std::endl;
+
+	std::cout << "int: ";
+	if (valueDouble > INT_MAX || valueDouble < INT_MIN || valueInt != valueDouble)
+		std::cout << "impossible";
+	else
+		std::cout << valueInt;
+	std::cout << std::endl;
+
+	std::cout << "float: ";
+	if (valueDouble > FLT_MAX || valueDouble < -FLT_MAX)
+		std::cout << "impossible";
+	else
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(valueDouble) << "f";
+	std::cout << std::endl;
+
+
+	std::cout << "double: " << std::fixed << std::setprecision(1) << valueDouble << std::endl;
+	// std::cout << "double: ";
+	// if (errno == ERANGE || valueDouble == HUGE_VAL || valueDouble == -HUGE_VAL) {
+	// 	std::cout << "impossible";
+	// } else {
+	// 	std::cout << std::fixed << std::setprecision(1) << valueDouble;
+	// }
+	// std::cout << std::endl;
 }
 
 void ScalarConverter::printException(const std::string &literal) {
-    std::cout << "char: impossible" << std::endl;
-    std::cout << "int: impossible" << std::endl;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
 
 	if (literal == "nan" || literal == "nanf")
 		std::cout << "float: nanf" << std::endl;

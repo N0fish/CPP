@@ -32,9 +32,9 @@ test_inputs=(
     "-inf"
     "42.0f"
     "0.0"
-    "0.0f"    # float ✅ добавлено
+    "0.0f"
     "-4.2"
-    "-4.2f"   # float ✅ добавлено
+    "-4.2f"
     "4.2"
     "42.0"
     "nanf"
@@ -54,15 +54,16 @@ expected_outputs=(
     "char: Non displayable\nint: 0\nfloat: 0.0f\ndouble: 0.0"
     "char: impossible\nint: -42\nfloat: -42.0f\ndouble: -42.0"
     "char: '*'\nint: 42\nfloat: 42.0f\ndouble: 42.0"
-    "char: impossible\nint: 2147483647\nfloat: 2147483647.0f\ndouble: 2147483647.0"
+    "char: impossible\nint: 2147483647\nfloat: 2147483648.0f\ndouble: 2147483647.0"  # исправленный float
     "char: impossible\nint: -2147483648\nfloat: -2147483648.0f\ndouble: -2147483648.0"
     "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan"
     "char: impossible\nint: impossible\nfloat: +inff\ndouble: +inf"
     "char: impossible\nint: impossible\nfloat: -inff\ndouble: -inf"
     "char: '*'\nint: 42\nfloat: 42.0f\ndouble: 42.0"
     "char: impossible\nint: impossible\nfloat: 0.0f\ndouble: 0.0"
-    "char: impossible\nint: impossible\nfloat: 0.0f\ndouble: 0.0"  # ✅ Добавлено для 0.0f
-    "char: impossible\nint: impossible\nfloat: -4.2f\ndouble: -4.2"  # ✅ Добавлено для -4.2f
+    "char: impossible\nint: impossible\nfloat: 0.0f\ndouble: 0.0"
+    "char: impossible\nint: impossible\nfloat: -4.2f\ndouble: -4.2"
+    "char: impossible\nint: impossible\nfloat: -4.2f\ndouble: -4.2"
     "char: impossible\nint: impossible\nfloat: 4.2f\ndouble: 4.2"
     "char: '*'\nint: 42\nfloat: 42.0f\ndouble: 42.0"
     "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan"
