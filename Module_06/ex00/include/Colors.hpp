@@ -13,6 +13,16 @@
 #ifndef COLORS_HPP
 # define COLORS_HPP
 
+# include <string>
+# include <iostream>
+# include <limits>
+# include <cfloat>
+# include <cstdlib>
+# include <cmath>
+# include <iomanip>
+# include <cctype> 
+// # include <exception>
+
 # define RESET "\e[0m"
 
 # define BOLD "\e[1m"
