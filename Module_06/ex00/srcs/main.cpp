@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 17:59:07 by algultse          #+#    #+#             */
-/*   Updated: 2025/01/23 18:12:11 by algultse         ###   ########.fr       */
+/*   Created: 2025/03/02 22:31:09 by algultse          #+#    #+#             */
+/*   Updated: 2025/03/04 20:00:16 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 int	main(int argc, char **argv)
 {
 	if (argc != 2) {
-		std::cerr << "Usage: ./convert <literal>" << std::endl;
+		std::cerr << RED << "Usage: ./convert <literal>" << RESET << std::endl;
 		return (1);
 	}
-
-	try {
-		ScalarConverter::convert(argv[1]);
-	} catch (std::exception &e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-
+	ScalarConverter::convert(argv[1]);
 	return (0);
 }

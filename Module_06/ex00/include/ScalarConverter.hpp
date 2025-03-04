@@ -16,6 +16,9 @@
 # include "Colors.hpp"
 
 class ScalarConverter {
+	public:
+		static void	convert(const std::string &literal);
+
 	private:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter&);
@@ -30,9 +33,6 @@ class ScalarConverter {
 		static void	printChar(const std::string &literal);
 		static void	printNumber(const std::string &literal);
 		static void	printException(const std::string &literal);
-		
-	public:
-		static void	convert(const std::string &literal);
 };
 
 #endif
