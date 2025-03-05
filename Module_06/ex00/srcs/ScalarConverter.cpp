@@ -66,7 +66,7 @@ bool	ScalarConverter::isNumber(const std::string &s) {
 	char	*end;
 	errno = 0;
 	double	value = std::strtod(s.c_str(), &end);
-	if (errno == ERANGE || value == HUGE_VAL || value == -HUGE_VAL)
+	if (errno == ERANGE || value == HUGE_VAL || value == -HUGE_VAL) 
 		return (true);
 	if (*end != '\0')
 		return (false);
@@ -76,7 +76,8 @@ bool	ScalarConverter::isNumber(const std::string &s) {
 bool	ScalarConverter::isException(const std::string &s) {
 	return (s == "nan" || s == "nanf" ||
 			s == "+inf" || s == "-inf" ||
-			s == "+inff" || s == "-inff");
+			s == "+inff" || s == "-inff" ||
+			s == "inf" || s == "inff");
 }
 
 void	ScalarConverter::printChar(const std::string &literal) {
@@ -103,8 +104,6 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 	if (isFloat)
 		number = literal.substr(0, literal.size() - 1);
 
-	char		*end;
-	errno = 0;
 	std::string	dblMaxStr = "1.7976931348623157e+308";
 	if (number.length() > dblMaxStr.length() + 2) {
 		std::cout << "char: impossible" << std::endl;
@@ -113,9 +112,18 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 		std::cout << "double: impossible" << std::endl;
 		return ;
 	}
-
+		
+	char	*end;
 	double	valueDouble = std::strtod(number.c_str(), &end);
-	if (valueDouble == 0.0 && (literal.find('.') != std::string::npos || isFloat)) {
+	if (valueDouble == HUGE_VAL || valueDouble == -HUGE_VAL || valueDouble > DBL_MAX || valueDouble < -DBL_MAX) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return ;
+	}
+
+	if ((literal == "0.0" || literal == "0.0f") && (literal.find('.') != std::string::npos || isFloat)) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: 0.0f" << std::endl;
@@ -126,31 +134,48 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 	int	valueInt = static_cast<int>(valueDouble);
 
 	std::cout << "char: ";
-	if (valueDouble < 0 || valueDouble > 127 || valueInt != valueDouble)
+	if (valueDouble < 0 || valueDouble > 127 || valueInt != valueDouble) {
 		std::cout << "impossible";
-	else if (std::isprint(valueInt))
+	} else if (std::isprint(valueInt)) {
 		std::cout << "'" << static_cast<char>(valueInt) << "'";
-	else
+	} else {
 		std::cout << "Non displayable";
+	}
 	std::cout << std::endl;
 
 	std::cout << "int: ";
-	if (valueDouble > INT_MAX || valueDouble < INT_MIN || valueInt != valueDouble)
+	if (valueDouble > INT_MAX || valueDouble < INT_MIN || valueInt != valueDouble) {
 		std::cout << "impossible";
-	else
+	} else {
 		std::cout << valueInt;
+	}
 	std::cout << std::endl;
 
 	std::cout << "float: ";
-	if (valueDouble > FLT_MAX || valueDouble < -FLT_MAX)
+	if (valueDouble > FLT_MAX || valueDouble < -FLT_MAX) {
 		std::cout << "impossible";
-	else
+	} else if (std::abs(valueDouble) < FLT_MIN && valueDouble != 0.0) {
+		std::cout << "0.0f";
+	} else {
 		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(valueDouble) << "f";
+	}
 	std::cout << std::endl;
 
 	std::cout << "double: ";
-	if (errno == ERANGE || valueDouble == HUGE_VAL || valueDouble == -HUGE_VAL) {
+	if (valueDouble > DBL_MAX || valueDouble < -DBL_MAX) {
 		std::cout << "impossible";
+	} else if (valueDouble == 0.0) { 
+		std::cout << "0.0";
+	} else if (std::abs(valueDouble) < 4.9406564584124654e-324) {
+		std::cout << "impossible";
+	} else if (std::abs(valueDouble - DBL_MAX) < 1e+292) {  
+		std::cout << std::scientific << std::setprecision(5) << DBL_MAX;
+	} else if (std::abs(valueDouble) >= 1e+6 && valueDouble > INT_MAX) {
+		std::cout << std::scientific << std::setprecision(5) << valueDouble;
+	} else if (std::abs(valueDouble) < 1e-5) {  
+		std::cout << std::scientific << std::setprecision(5) << valueDouble;
+	} else if (std::abs(valueDouble) < DBL_MIN) {
+		std::cout << std::scientific << std::setprecision(6) << valueDouble;
 	} else {
 		std::cout << std::fixed << std::setprecision(1) << valueDouble;
 	}
@@ -163,13 +188,17 @@ void	ScalarConverter::printException(const std::string &literal) {
 
 	if (literal == "nan" || literal == "nanf")
 		std::cout << "float: nanf" << std::endl;
-	else if (literal == "+inf" || literal == "+inff")
+	else if (literal == "inf" || literal == "+inf" || literal == "+inff")
 		std::cout << "float: +inff" << std::endl;
 	else if (literal == "-inf" || literal == "-inff")
 		std::cout << "float: -inff" << std::endl;
+	else
+		std::cout << literal << "f" << std::endl;
 
 	if (literal == "nanf" || literal == "+inff" || literal == "-inff")
 		std::cout << "double: " << literal.substr(0, literal.size() - 1) << std::endl;
+	else if (literal == "inf")
+		std::cout << "double: +" << literal.substr(0, literal.size()) << std::endl;
 	else
 		std::cout << "double: " << literal << std::endl;
 }

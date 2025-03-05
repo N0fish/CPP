@@ -20,7 +20,7 @@
 # include <cstdlib>
 # include <cmath>
 # include <iomanip>
-# include <cctype> 
+# include <cctype>
 
 # define RESET "\e[0m"
 

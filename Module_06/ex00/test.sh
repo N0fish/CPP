@@ -17,7 +17,6 @@ fi
 
 echo "${BLUE}Running tests for ScalarConverter...${RESET}"
 echo "========================================="
-
 test_inputs=(
     "0"
     "-42"
@@ -25,6 +24,7 @@ test_inputs=(
     "2147483647"
     "-2147483648"
     "nan"
+    "inf"
     "+inf"
     "-inf"
     "42.0f"
@@ -53,8 +53,12 @@ test_inputs=(
     "42.f0"
     "42.0.0f"
     "1e309"
+    "2.22507e-308"   # DBL_MIN
+    "1.79769e+308"   # DBL_MAX
+    "2.22045e-16"    # DBL_EPSILON
 )
 
+# Ожидаемые выходные данные
 expected_outputs=(
     "char: Non displayable\nint: 0\nfloat: 0.0f\ndouble: 0.0"
     "char: impossible\nint: -42\nfloat: -42.0f\ndouble: -42.0"
@@ -62,6 +66,7 @@ expected_outputs=(
     "char: impossible\nint: 2147483647\nfloat: 2147483648.0f\ndouble: 2147483647.0"
     "char: impossible\nint: -2147483648\nfloat: -2147483648.0f\ndouble: -2147483648.0"
     "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan"
+    "char: impossible\nint: impossible\nfloat: +inff\ndouble: +inf"
     "char: impossible\nint: impossible\nfloat: +inff\ndouble: +inf"
     "char: impossible\nint: impossible\nfloat: -inff\ndouble: -inf"
     "char: '*'\nint: 42\nfloat: 42.0f\ndouble: 42.0"
@@ -90,6 +95,9 @@ expected_outputs=(
     "Invalid Type!"
     "Invalid Type!"
     "char: impossible\nint: impossible\nfloat: impossible\ndouble: impossible"
+    "char: impossible\nint: impossible\nfloat: 0.0f\ndouble: 2.22507e-308" # DBL_MIN
+    "char: impossible\nint: impossible\nfloat: impossible\ndouble: 1.79769e+308" # DBL_MAX
+    "char: impossible\nint: impossible\nfloat: 0.0f\ndouble: 2.22045e-16" # DBL_EPSILON
 )
 
 success=0
