@@ -33,6 +33,9 @@ class ScalarConverter {
 		static void	printChar(const std::string &literal);
 		static void	printNumber(const std::string &literal);
 		static void	printException(const std::string &literal);
+
+		static void	printImpossible();
+		static int	countDecimalPlaces(double number);
 };
 
 #endif

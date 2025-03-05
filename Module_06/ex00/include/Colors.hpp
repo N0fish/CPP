@@ -21,6 +21,9 @@
 # include <cmath>
 # include <iomanip>
 # include <cctype>
+# include <cerrno>
+# include <climits>
+# include <sstream>
 
 # define RESET "\e[0m"
 
