@@ -109,13 +109,6 @@ void	ScalarConverter::printChar(const std::string &literal) {
 				<< std::endl;
 }
 
-void	ScalarConverter::printImpossible() {
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: impossible" << std::endl;
-	std::cout << "double: impossible" << std::endl;
-}
-
 void	ScalarConverter::printNumber(const std::string &literal) {
 	bool		isFloat = (literal[literal.size() - 1] == 'f');
 	std::string	number = literal;
@@ -125,14 +118,34 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 
 	std::string	dblMaxStr = "1.7976931348623157e+308";
 	if (number.length() > dblMaxStr.length() + 2) {
-		printImpossible();
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
 		return ;
 	}
 		
 	char	*end;
 	double	valueDouble = std::strtod(number.c_str(), &end);
-	if (valueDouble == HUGE_VAL || valueDouble == -HUGE_VAL || valueDouble > DBL_MAX || valueDouble < -DBL_MAX) {
-		printImpossible();
+
+	if (std::isnan(valueDouble)) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << std::sqrt(-1) << "f" << std::endl; //nanf
+		std::cout << "double: " << (0.0 / 0.0) << std::endl; //nan
+		return ;
+	}
+	
+	if (std::isinf(valueDouble)) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		if (valueDouble > 0) {
+			std::cout << "float: +" << (1.0 / 0.0) << "f" << std::endl; //+inff
+			std::cout << "double: +" << std::exp(1000) << std::endl; //+inf
+		} else {
+			std::cout << "float: " << (-1.0 / 0.0) << "f" <<std::endl; //-inff
+			std::cout << "double: " << std::log(0.0) << std::endl; //-inf
+		}
 		return ;
 	}
 
@@ -157,7 +170,7 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 	std::cout << std::endl;
 
 	std::cout << "int: ";
-	if (valueDouble > INT_MAX || valueDouble < INT_MIN || valueInt != valueDouble) {
+	if (valueDouble > INT_MAX || valueDouble < INT_MIN || std::floor(valueDouble) != valueDouble) {
 		std::cout << "impossible";
 	} else {
 		std::cout << valueInt;
@@ -173,6 +186,9 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 		std::cout << "0.0f";
 	} else if (std::abs(floatValue) < 1e-6) {  
 		std::cout << "0.0f";
+	} else if ((std::abs(floatValue) >= 1e+7 && (floatValue > INT_MAX || floatValue < INT_MIN)) ||
+		std::abs(floatValue) < 1e-5) {
+		std::cout << std::scientific << std::setprecision(6) << floatValue << "f";
 	} else {
 		int precision = std::min(countDecimalPlaces(valueDouble), 6); 
 		std::cout << std::fixed << std::setprecision(precision) << floatValue << "f";
@@ -180,23 +196,33 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 	std::cout << std::endl;
 
 	std::cout << "double: ";
-	if (valueDouble > DBL_MAX || valueDouble < -DBL_MAX) {
+	double doubleValue = static_cast<double>(valueDouble);
+
+	if (doubleValue > DBL_MAX || doubleValue < -DBL_MAX) {
 		std::cout << "impossible";
-	} else if (valueDouble == 0.0) { 
+	} else if (doubleValue == 0.0) { 
 		std::cout << "0.0";
-	} else if (std::abs(valueDouble) < 4.9406564584124654e-324) {
+	} else if (std::abs(doubleValue) < 4.9406564584124654e-324) { 
 		std::cout << "impossible";
-	} else if (std::abs(valueDouble - DBL_MAX) < 1e+292) {  
-		std::cout << std::scientific << std::setprecision(5) << DBL_MAX;
-	} else if (std::abs(valueDouble) >= 1e+6 && valueDouble > INT_MAX) {
-		std::cout << std::scientific << std::setprecision(5) << valueDouble;
-	} else if (std::abs(valueDouble) < 1e-5) {  
-		std::cout << std::scientific << std::setprecision(5) << valueDouble;
-	} else if (std::abs(valueDouble) < DBL_MIN) {
-		std::cout << std::scientific << std::setprecision(6) << valueDouble;
+	} else if (std::abs(doubleValue - DBL_MAX) < 1e+292 || std::abs(doubleValue + DBL_MAX) < 1e+292) {  
+		std::cout << std::scientific << std::setprecision(5) << doubleValue;
+	} else if ((std::abs(doubleValue) >= 1e+6 && (doubleValue > INT_MAX || doubleValue < INT_MIN)) ||
+			(std::abs(doubleValue) < 1e-5 && doubleValue != 0.0)) {  
+		std::cout << std::scientific << std::setprecision(5) << doubleValue;
+	} else if (std::abs(doubleValue) < DBL_MIN) {
+		std::cout << std::scientific << std::setprecision(6) << doubleValue;
 	} else {
-		int	precision = countDecimalPlaces(valueDouble);
-		std::cout << std::fixed << std::setprecision(precision) << valueDouble;
+		int precision = countDecimalPlaces(doubleValue);
+		std::ostringstream oss;
+		oss << std::fixed << std::setprecision(precision) << doubleValue;
+		std::string result = oss.str();
+
+		result.erase(result.find_last_not_of('0') + 1, std::string::npos);
+		if (result.back() == '.')
+			result.pop_back();
+		if (doubleValue == static_cast<int>(doubleValue))
+			result += ".0";
+		std::cout << result;
 	}
 	std::cout << std::endl;
 }
