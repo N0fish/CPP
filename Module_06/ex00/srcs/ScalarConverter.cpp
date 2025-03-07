@@ -29,7 +29,7 @@ void	ScalarConverter::convert(const std::string &literal) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                             PRIVATE FUNCTIONS                              */
+/*               PRIVATE COPLIEN'S FUNCTIONS (not instanciable)               */
 /* -------------------------------------------------------------------------- */
 
 ScalarConverter::ScalarConverter() {}
