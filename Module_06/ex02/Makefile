@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/22 21:01:03 by algultse          #+#    #+#              #
-#    Updated: 2025/01/26 22:45:29 by algultse         ###   ########.fr        #
+#    Created: 2025/02/06 11:10:34 by algultse          #+#    #+#              #
+#    Updated: 2025/02/07 18:50:22 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = AForm
+NAME = identify
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -19,7 +19,7 @@ OBJDIR = ./obj/
 SRCDIR = ./srcs/
 INCDIR = ./include/
 
-SRC = main.cpp
+SRC = Base.cpp main.cpp
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
