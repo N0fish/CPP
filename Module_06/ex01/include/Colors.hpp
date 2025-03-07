@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/02 12:11:43 by algultse          #+#    #+#             */
-/*   Updated: 2025/02/06 13:34:31 by algultse         ###   ########.fr       */
+/*   Created: 2025/03/02 12:11:43 by algultse          #+#    #+#             */
+/*   Updated: 2025/03/06 13:34:31 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <iostream>
 # include <cstdint>
 # include <cassert>
-// # include <cstddef>
 
 # define RESET "\e[0m"
 
