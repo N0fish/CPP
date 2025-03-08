@@ -17,6 +17,7 @@
 # include <iostream>
 # include <cstdlib>
 # include <ctime>
+# include <exception>
 
 # define RESET "\e[0m"
 

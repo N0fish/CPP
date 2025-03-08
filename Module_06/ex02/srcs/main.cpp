@@ -55,19 +55,19 @@ void	identify(Base& p)
 		(void)dynamic_cast<A&>(p);
 		std::cout << GREEN "A" RESET << std::endl;
 		return ;
-	} catch (...) {}
+	} catch (const std::bad_cast& e) {}
 
 	try {
 		(void)dynamic_cast<B&>(p);
 		std::cout << BLUE "B" RESET << std::endl;
 		return ;
-	} catch (...) {}
+	} catch (const std::bad_cast& e) {}
 
 	try {
 		(void)dynamic_cast<C&>(p);
 		std::cout << PURPLE "C" RESET << std::endl;
 		return ;
-	} catch (...) {}
+	} catch (const std::bad_cast& e) {}
 
 	std::cout << RED "Unknown Type" RESET << std::endl;
 }
