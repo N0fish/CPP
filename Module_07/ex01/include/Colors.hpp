@@ -6,18 +6,19 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:11:37 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/07 22:17:09 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:33:09 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLORS_HPP
 # define COLORS_HPP
 
-// # include <string>
-// # include <iostream>
-// # include <cstdint>
-// # include <cassert>
-// # include <cstddef>
+# include <string>
+# include <iostream>
+# include <cstddef>
+# include <cctype>
+# include <cmath>
+# include <iomanip>
 
 # define RESET "\e[0m"
 
