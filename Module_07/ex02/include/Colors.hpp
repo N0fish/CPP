@@ -13,10 +13,11 @@
 #ifndef COLORS_HPP
 # define COLORS_HPP
 
-// # include <string>
-// # include <iostream>
-// # include <cstdlib>
-// # include <ctime>
+# include <string>
+# include <iostream>
+# include <exception>
+# include <cstdlib>
+# include <ctime>
 
 # define RESET "\e[0m"
 

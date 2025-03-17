@@ -17,7 +17,7 @@
 
 template <typename T>
 void iter(T* array, std::size_t len, void (*func)(T &)) {  
-    if (!array) {
+    if (!array || !func) {
         std::cerr << "Error: NULL pointer passed to iter()" << std::endl;
         return ;
     }
@@ -28,7 +28,7 @@ void iter(T* array, std::size_t len, void (*func)(T &)) {
 
 template <typename T>
 void iter(T const* array, std::size_t len, void (*func)(T const &)) {  
-    if (!array) {
+    if (!array|| !func) {
         std::cerr << "Error: NULL pointer passed to iter()" << std::endl;
         return ;
     }
