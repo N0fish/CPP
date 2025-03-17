@@ -15,6 +15,14 @@
 
 # include <string>
 # include <iostream>
+// # include <algorithm>
+# include <stdexcept>
+
+# include <vector>
+# include <list>
+# include <deque>
+# include <set>
+# include <iomanip>
 
 # define RESET "\e[0m"
 
