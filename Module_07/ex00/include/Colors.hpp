@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:06:03 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/08 12:10:13 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:31:59 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <climits>
 
 # define RESET "\e[0m"
 

@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:10:11 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/08 12:58:51 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:37:27 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	printHeader(const std::string& title) {
 }
 
 void	printSuccess(const std::string& msg) {
-	std::cout << GREEN << "✅ " << msg << RESET << std::endl;
+	std::cout << GREEN << "✔️ " << msg << RESET << std::endl;
 }
 
 void	printError(const std::string& msg) {
-	std::cout << RED << "❌ " << msg << RESET << std::endl;
+	std::cout << RED << "✖️ " << msg << RESET << std::endl;
 }
 
 void	testSubject()
@@ -95,29 +95,6 @@ void	testSelfSwap()
 	std::cout << "After swap:  a = " << a << std::endl;
 
 	printSuccess("Self swap test passed!");
-}
-
-void	testNumericLimits()
-{
-	printHeader("[Test Numeric Limits]");
-
-	std::cout	<< "min(INT_MIN, INT_MAX) = " 
-				<< ::min(std::numeric_limits<int>::min(), std::numeric_limits<int>::max()) 
-				<< std::endl;
-	
-	std::cout	<< "max(INT_MIN, INT_MAX) = " 
-				<< ::max(std::numeric_limits<int>::min(), std::numeric_limits<int>::max()) 
-				<< std::endl;
-
-	std::cout	<< "min(DBL_MIN, DBL_MAX) = " 
-				<< ::min(std::numeric_limits<double>::min(), std::numeric_limits<double>::max()) 
-				<< std::endl;
-
-	std::cout	<< "max(DBL_MIN, DBL_MAX) = " 
-				<< ::max(std::numeric_limits<double>::min(), std::numeric_limits<double>::max()) 
-				<< std::endl;
-
-	printSuccess("Numeric limits test passed!");
 }
 
 void	testPointerSwap()
@@ -194,7 +171,6 @@ int	main()
 	testSubject();
 	testExtended();
 	testSelfSwap();
-	testNumericLimits();
 	testPointerSwap();
 	testCustomType();
 	testArraySwap();

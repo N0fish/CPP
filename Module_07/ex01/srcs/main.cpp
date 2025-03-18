@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:12:50 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/09 18:01:43 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:49:31 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int main() {
 	std::cout << std::endl;
 
 	printHeader("[Test with nullptr]");
-	int* nullArray = nullptr;
+	int* nullArray = NULL;
 	iter(nullArray, 5, printElement);
 
 	std::cout << BOLD << YELLOW << "\n\tALL TESTS PASSED!" << RESET << std::endl;

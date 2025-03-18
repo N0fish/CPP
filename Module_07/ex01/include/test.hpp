@@ -6,22 +6,18 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:12:14 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/09 16:12:10 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:48:37 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_HPP
-#define TEST_HPP
+# define TEST_HPP
 
-#include "Colors.hpp"
+# include "Colors.hpp"
 
 template <typename T>
 void	printElement(T const &elem) {
-	if (typeid(elem) == typeid(double) || typeid(elem) == typeid(float)) {
-		std::cout << std::fixed << std::setprecision(1);
-	}
 	std::cout << elem << " ";
-	// std::cout << "Type: " << typeid(elem).name() << " | Value: " << elem << std::endl;
 }
 
 template <typename T>
@@ -34,7 +30,7 @@ void	multiplyByTwo(int &elem) {
 }
 
 void	roundDouble(double &elem) {
-	elem = std::round(elem);
+	elem = (elem >= 0) ? floor(elem + 0.5) : ceil(elem - 0.5);
 }
 
 void	toUpperCase(char &elem) {
