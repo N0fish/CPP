@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 13:35:00 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/06 15:41:23 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:49:27 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SERIALIZER_HPP
 
 # include "Colors.hpp"
+
+typedef unsigned long uintptr_t;
 
 struct Data;
 

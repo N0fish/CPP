@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 19:20:30 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/07 18:46:12 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:03:18 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <cstdlib>
 # include <ctime>
 # include <exception>
+# include <typeinfo>
 
 # define RESET "\e[0m"
 

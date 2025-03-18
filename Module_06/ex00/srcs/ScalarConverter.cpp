@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 22:17:51 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/04 20:06:36 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:37:46 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 		std::cout << "0.0f";
 	} else if (std::abs(floatValue) < 1e-6) {  
 		std::cout << "0.0f";
-	} else if ((std::abs(floatValue) >= 1e+7 && (floatValue > INT_MAX || floatValue < INT_MIN)) ||
+	} else if ((std::abs(floatValue) >= 1e+7 && (floatValue > static_cast<float>(INT_MAX) || floatValue < static_cast<float>(INT_MIN))) ||
 		std::abs(floatValue) < 1e-5) {
 		std::cout << std::scientific << std::setprecision(6) << floatValue << "f";
 	} else {
@@ -218,8 +218,8 @@ void	ScalarConverter::printNumber(const std::string &literal) {
 		std::string result = oss.str();
 
 		result.erase(result.find_last_not_of('0') + 1, std::string::npos);
-		if (result.back() == '.')
-			result.pop_back();
+		if (!result.empty() && result[result.size() - 1] == '.')
+			result.resize(result.size() - 1);
 		if (doubleValue == static_cast<int>(doubleValue))
 			result += ".0";
 		std::cout << result;

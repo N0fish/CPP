@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:31:54 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/07 16:07:12 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:59:42 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 void	printData(const std::string& msg, Data* data)
 {
 	if (!data) {
-		std::cout << RED << "❌ " << msg << ": NULL pointer" << RESET << std::endl;
+		std::cout << RED << "✖️ " << msg << ": NULL pointer" << RESET << std::endl;
 		return ;
 	}
-	std::cout << GREEN << "✅ " << msg << RESET << std::endl;
+	std::cout << GREEN << "✔️ " << msg << RESET << std::endl;
 	std::cout << "  📌 Address: " << data << std::endl;
 	std::cout << "  🆔 ID: " << data->id << std::endl;
 	std::cout << "  📝 Name: " << data->name << std::endl;
@@ -38,7 +38,7 @@ void	testBasicSerialization()
 	printData("Restored Data", restored);
 
 	assert(restored == &original);
-	std::cout << GREEN << "✅ Test Passed: Pointers match!" << RESET << "\n\n";
+	std::cout << GREEN << "✔️ Test Passed: Pointers match!" << RESET << "\n\n";
 }
 
 void	testNullptr()
@@ -50,7 +50,7 @@ void	testNullptr()
 	Data*		restored = Serializer::deserialize(raw);
 
 	assert(restored == NULL);
-	std::cout << GREEN << "✅ Test Passed: Null pointer correctly handled!\n\n" << RESET;
+	std::cout << GREEN << "✔️ Test Passed: Null pointer correctly handled!\n\n" << RESET;
 }
 
 void	testDynamicMemory()
@@ -66,7 +66,7 @@ void	testDynamicMemory()
 
 	assert(restored == heapData);
 	delete heapData;
-	std::cout << GREEN << "✅ Test Passed: Heap pointer restored correctly!\n\n" << RESET;
+	std::cout << GREEN << "✔️ Test Passed: Heap pointer restored correctly!\n\n" << RESET;
 }
 
 void	testArraySerialization()
@@ -80,16 +80,16 @@ void	testArraySerialization()
 	};
 
 	for (int i = 0; i < 3; ++i) {
-		// printData("Restored Data (Before) #" + std::to_string(i + 1), &dataArray[i]);
-
 		uintptr_t raw = Serializer::serialize(&dataArray[i]);
 		Data* restored = Serializer::deserialize(raw);
 
-		printData("Restored Data #" + std::to_string(i + 1), restored);
+		std::ostringstream oss;
+		oss << (i + 1);
+		printData("Restored Data #" + oss.str(), restored);
 		assert(restored == &dataArray[i]);
 	}
 
-	std::cout << GREEN << "✅ Test Passed: Array elements restored correctly!\n\n" << RESET;
+	std::cout << GREEN << "✔️ Test Passed: Array elements restored correctly!\n\n" << RESET;
 }
 
 void	testInvalidData()
@@ -100,10 +100,10 @@ void	testInvalidData()
 	Data*		restored = Serializer::deserialize(invalidRaw);
 
 	if (restored) {
-		std::cout << RED << "❌ Warning: Deserialization of invalid data returned non-null pointer!"
+		std::cout << RED << "✖️ Warning: Deserialization of invalid data returned non-null pointer!"
 				  << RESET << std::endl;
 	} else {
-		std::cout << GREEN << "✅ Test Passed: Invalid data correctly handled!" << RESET << std::endl;
+		std::cout << GREEN << "✔️ Test Passed: Invalid data correctly handled!" << RESET << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -121,29 +121,7 @@ void	testNegativeValues()
 	printData("Restored Negative Data", restored);
 
 	assert(restored == &negativeData);
-	std::cout << GREEN << "✅ Test Passed: Negative values handled correctly!\n" << RESET << std::endl;
-}
-
-void	testUseAfterDelete()
-{
-	std::cout << BOLD << CYAN << "[TEST 7] Use-After-Free (Dangling Pointer Check)" << RESET << std::endl;
-
-	Data* ptr = new Data(1337, "Temporary", 42.42f);
-	printData("Allocated Data", ptr);
-
-	uintptr_t raw = Serializer::serialize(ptr);
-	delete ptr;
-	ptr = NULL;
-
-	Data* restored = Serializer::deserialize(raw);
-	printData("Restored Data After Delete", restored); // dangling pointer
-
-	if ((restored->id != 1337 && restored->name != "Temporary" && restored->balance != 42.42f) || restored == NULL) {
-		std::cout << GREEN << "✅ Test Passed: Memory was reset or reallocated!" << RESET << std::endl;
-	} else {
-		std::cout << RED << "❌ Warning: Dangling pointer still holds valid data!" << RESET << std::endl;
-	}	
-	std::cout << std::endl;
+	std::cout << GREEN << "✔️ Test Passed: Negative values handled correctly!\n" << RESET << std::endl;
 }
 
 int	main()
@@ -154,7 +132,6 @@ int	main()
 	testArraySerialization();
 	testInvalidData();
 	testNegativeValues();
-	testUseAfterDelete();
 
 	std::cout << BOLD << YELLOW << "\n\tALL TESTS PASSED !\n" << RESET;
 	return (0);
