@@ -169,6 +169,41 @@ void	testNegativeNumbers() {
 	} else {
 		printError("Error: shortestSpan() returned a negative value!");
 	}
+	if (sp.longestSpan() == (0 - (-50))) {
+		printSuccess("Longest span is correct!");
+	} else {
+		printError("Longest span is incorrect!");
+	}
+}
+
+void	testDuplicateNumbers() {
+	printHeader("[Test with Duplicate Numbers]");
+
+	Span sp(5);
+	sp.addNumber(42);
+	sp.addNumber(3);
+	sp.addNumber(42);
+	sp.addNumber(7);
+	sp.addNumber(20);
+
+	printSpan("Span with duplicates", sp);
+
+	int shortest = sp.shortestSpan();
+	int longest = sp.longestSpan();
+
+	std::cout << "Shortest interval: " << shortest << std::endl;
+	std::cout << "Longest interval: " << longest << std::endl;
+
+	if (shortest == 0) {
+		printSuccess("Duplicate numbers are handled correctly!");
+	} else {
+		printError("Expected shortest span to be 0!");
+	}
+	if (longest == (42 - 3)) {
+		printSuccess("Longest span is correct!");
+	} else {
+		printError("Longest span is incorrect!");
+	}
 }
 
 void	testPerformance() {
@@ -224,6 +259,7 @@ int	main()
 	testRangeAddition();
 	testListRangeAddition();
 	testNegativeNumbers();
+	testDuplicateNumbers();
 	testPerformance();
 	testMinMaxSpan();
 
