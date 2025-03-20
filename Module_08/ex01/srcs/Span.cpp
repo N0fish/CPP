@@ -29,7 +29,7 @@ Span &Span::operator=(const Span &other) {
 }
 
 void	Span::addNumber(int n) {
-	if (_numbers.size() >= _maxSize)
+	if (_numbers.size() == _maxSize)
 		throw SpanFullException();
 	_numbers.push_back(n);
 }
@@ -40,7 +40,7 @@ void	Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
 	_numbers.insert(_numbers.end(), begin, end);
 }
 
-int	Span::shortestSpan() const {
+long long	Span::shortestSpan() const {
 	if (_numbers.size() < 2) {
 		throw NotEnoughNumbersException();
 	}
@@ -48,48 +48,38 @@ int	Span::shortestSpan() const {
 	std::vector<int> sorted = _numbers;
 	std::sort(sorted.begin(), sorted.end());
 
-	int minSpan = std::numeric_limits<int>::max();
-	for (size_t i = 0; i < sorted.size() - 1; i++) {
-		int diff = std::abs(sorted[i + 1] - sorted[i]);
+	long long minSpan = std::numeric_limits<long long>::max();
+	for (size_t i = 0; i < sorted.size() - 1; ++i) {
+		long long diff = static_cast<long long>(sorted[i + 1]) - static_cast<long long>(sorted[i]);
 		if (diff < minSpan) {
 			minSpan = diff;
 		}
 	}
-
 	return (minSpan);
 }
 
-int	Span::longestSpan() const {
+long long	Span::longestSpan() const {
 	if (_numbers.size() < 2)
 		throw NotEnoughNumbersException();
 
-	int minElement = *std::min_element(_numbers.begin(), _numbers.end());
-	int maxElement = *std::max_element(_numbers.begin(), _numbers.end());
+	int min = *std::min_element(_numbers.begin(), _numbers.end());
+	int max = *std::max_element(_numbers.begin(), _numbers.end());
 
-	return (maxElement - minElement);
+	return (static_cast<long long>(max) - static_cast<long long>(min));
 }
-
-// template <typename Container>
-// void	addNumbers(typename Container::iterator begin, typename Container::iterator end) {
-// 	if (_numbers.size() + std::distance(begin, end) > _maxSize)
-// 		throw SpanFullException();
-// 	_numbers.insert(_numbers.end(), begin, end);
-// }
 
 std::vector<int>	Span::getNumbers() const {
 	return (_numbers);
 }
 
-// ✅ Геттер для максимального размера
 unsigned int	Span::getSize() const {
 	return (_maxSize);
 }
 
-// ✅ Реализация исключений
 const char	*Span::SpanFullException::what() const throw() {
-	return ("Span is full! Cannot add more numbers.");
+	return (RED DIM "Span is full! Cannot add more numbers." RESET);
 }
 
 const char	*Span::NotEnoughNumbersException::what() const throw() {
-	return ("Not enough numbers in Span to calculate a span!");
+	return (YELLOW DIM "Not enough numbers in Span to calculate a span!" RESET);
 }

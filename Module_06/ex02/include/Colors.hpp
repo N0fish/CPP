@@ -18,7 +18,6 @@
 # include <cstdlib>
 # include <ctime>
 # include <exception>
-# include <typeinfo>
 
 # define RESET "\e[0m"
 

@@ -16,25 +16,25 @@
 #include "Colors.hpp"
 
 template <typename T>
-void iter(T* array, std::size_t len, void (*func)(T &)) {  
-    if (!array || !func) {
-        std::cerr << "Error: NULL pointer passed to iter()" << std::endl;
-        return ;
-    }
-    for (std::size_t i = 0; i < len; i++) {
-        func(array[i]);
-    }
+void	iter(T* array, std::size_t len, void (*func)(T &)) {  
+	if (!array || !func) {
+		std::cerr << "Error: NULL pointer passed to iter()" << std::endl;
+		return ;
+	}
+	for (std::size_t i = 0; i < len; i++) {
+		func(array[i]);
+	}
 }
 
 template <typename T>
-void iter(T const* array, std::size_t len, void (*func)(T const &)) {  
-    if (!array|| !func) {
-        std::cerr << "Error: NULL pointer passed to iter()" << std::endl;
-        return ;
-    }
-    for (std::size_t i = 0; i < len; i++) {
-        func(array[i]);
-    }
+void	iter(T const* array, std::size_t len, void (*func)(T const &)) {  
+	if (!array|| !func) {
+		std::cerr << "Error: NULL pointer passed to iter()" << std::endl;
+		return ;
+	}
+	for (std::size_t i = 0; i < len; i++) {
+		func(array[i]);
+	}
 }
 
 #endif

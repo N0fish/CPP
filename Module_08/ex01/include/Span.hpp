@@ -17,8 +17,8 @@
 
 class Span {
 	private:
-		std::vector<int> _numbers;
-		unsigned int _maxSize;
+		std::vector<int>	_numbers;
+		unsigned int		_maxSize;
 
 	public:
 		Span();
@@ -30,18 +30,16 @@ class Span {
 
 		void	addNumber(int n);
 		void	addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-	
-		// template <typename Container>
-		// void	addNumbers(typename Container::iterator begin, typename Container::iterator end);
-		template <typename Container> 
-		void	addNumbers(typename Container::iterator begin, typename Container::iterator end) {
+
+		template <typename Container>
+		void addNumbers(Container begin, Container end) {
 			if (_numbers.size() + std::distance(begin, end) > _maxSize)
 				throw SpanFullException();
 			_numbers.insert(_numbers.end(), begin, end);
 		}
 
-		int		shortestSpan() const;
-		int		longestSpan() const;
+		long long	shortestSpan() const;
+		long long	longestSpan() const;
 
 		std::vector<int>	getNumbers() const;
 		unsigned int		getSize() const;
@@ -56,19 +54,5 @@ class Span {
 				virtual const char* what() const throw();
 		};
 };
-
-// class SpanFullException : public std::exception {
-// 	public:
-// 		virtual const char* what() const throw() {
-// 			return ("Span is full! Cannot add more numbers.");
-// 		}
-// };
-
-// class NotEnoughNumbersException : public std::exception {
-// 	public:
-// 		virtual const char* what() const throw() {
-// 			return ("Not enough numbers in Span to calculate a span!");
-// 		}
-// };
 
 #endif

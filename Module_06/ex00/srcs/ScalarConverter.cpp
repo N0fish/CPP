@@ -94,7 +94,7 @@ bool	ScalarConverter::isException(const std::string &s) {
 
 void	ScalarConverter::printChar(const std::string &literal) {
 	char	c = literal[1];
-	std::cout	<< "char: '" << c << "'"
+	std::cout	<< "char: '" << static_cast<char>(c) << "'"
 				<< std::endl;
 
 	std::cout	<< "int: " << static_cast<int>(c)
