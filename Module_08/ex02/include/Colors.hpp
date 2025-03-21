@@ -15,9 +15,9 @@
 
 # include <string>
 # include <iostream>
-# include <exception>
-# include <cstdlib>
-# include <ctime>
+# include <stack>
+# include <deque>
+# include <list>
 
 # define RESET "\e[0m"
 
