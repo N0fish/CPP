@@ -6,7 +6,7 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 22:13:09 by algultse          #+#    #+#              #
-#    Updated: 2025/03/17 22:18:18 by algultse         ###   ########.fr        #
+#    Updated: 2025/03/24 18:54:43 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJDIR = ./obj/
 SRCDIR = ./srcs/
 INCDIR = ./include/
 
-SRC =  Span.cpp main.cpp 
+SRC =  RPN.cpp main.cpp 
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
