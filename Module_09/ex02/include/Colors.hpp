@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:20:30 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/17 18:23:47 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/24 22:58:09 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,19 @@
 
 # include <string>
 # include <iostream>
-# include <stack>
+# include <vector>
 # include <deque>
-# include <list>
+# include <ctime>
+
+# include <cstdlib>
+# include <sstream>
+# include <limits>
+# include <algorithm>
+# include <set>
+
+# include <climits>
+# include <stdexcept>
+# include <utility>
 
 # define RESET "\e[0m"
 

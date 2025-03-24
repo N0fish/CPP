@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 15:49:21 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/18 00:25:10 by algultse         ###   ########.fr       */
+/*   Created: 2025/03/24 17:44:30 by algultse          #+#    #+#             */
+/*   Updated: 2025/03/25 00:01:10 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ".hpp"
+#include "PmergeMe.hpp"
 
-
-int	main()
+int	main(int argc, char **argv)
 {
-	std::cout << YELLOW "\tRunning tests for " << RESET << std::endl;
-
-
-	std::cout << YELLOW "\n\tALL TESTS COMPLETED!" << RESET << std::endl;
+	try {
+		PmergeMe	sorter;
+		sorter.runSort(argc, argv);
+	} catch (const std::exception &e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		return (1);
+	}
 	return (0);
 }

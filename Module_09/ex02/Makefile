@@ -6,7 +6,7 @@
 #    By: algultse <algultse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 19:01:30 by algultse          #+#    #+#              #
-#    Updated: 2025/03/17 19:10:11 by algultse         ###   ########.fr        #
+#    Updated: 2025/03/24 22:02:22 by algultse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJDIR = ./obj/
 SRCDIR = ./srcs/
 INCDIR = ./include/
 
-SRC =  main.cpp 
+SRC =  PmergeMe.cpp main.cpp 
 OBJS = $(SRC:%.cpp=$(OBJDIR)%.o)
 
 all: $(NAME)
