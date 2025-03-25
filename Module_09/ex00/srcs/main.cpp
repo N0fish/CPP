@@ -6,7 +6,7 @@
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:49:21 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/24 18:32:14 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:08:51 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,7 @@ static bool	isValidValue(const std::string& valueStr, float& value) {
 	return (!(ss.fail() || !ss.eof()));
 }
 
-static void	trim(std::string& str) {
-	// size_t start = str.find_first_not_of(" \t\r");
-	// size_t end = str.find_last_not_of(" \t\r");
-
-	// if (start == std::string::npos || end == std::string::npos)
-	// 	str = "";
-	// else
-	// 	str = str.substr(start, end - start + 1);
-	
+static void	trim(std::string& str) {	
 	size_t start = str.find_first_not_of(" \t");
 	size_t end = str.find_last_not_of(" \t");
 	str = (start == std::string::npos) ? "" : str.substr(start, end - start + 1);
@@ -61,7 +53,6 @@ int	main(int argc, char **argv)
 	trim(line);
 	if (line != "date | value") {
 		std::cerr << RED "Error: bad header format." RESET << std::endl;
-		return (1);
 	}
 
 	while (std::getline(input, line)) {
@@ -69,7 +60,14 @@ int	main(int argc, char **argv)
 			continue ;
 
 		size_t	sep = line.find('|');
-		if (sep == std::string::npos || (line.find('|', sep + 1) != std::string::npos)) {
+		// if (sep == std::string::npos || (line.find('|', sep + 1) != std::string::npos)) {
+		// if (sep == std::string::npos || line[sep + 1] != ' ' || line[sep - 1] != ' ') {
+		if (sep == std::string::npos || sep == 0 || sep == line.length() - 1 || line[sep - 1] != ' ' || line[sep + 1] != ' ') {
+			std::cerr	<< RED "Error: bad input => " << line
+						<< RESET << std::endl;
+			continue ;
+		}
+		if ((sep >= 2 && line[sep - 2] == ' ') || (sep + 2 < line.length() && line[sep + 2] == ' ')) {
 			std::cerr	<< RED "Error: bad input => " << line
 						<< RESET << std::endl;
 			continue ;
