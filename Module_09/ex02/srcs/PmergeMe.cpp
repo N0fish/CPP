@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.сpp                                   :+:      :+:    :+:   */
+/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algultse <algultse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 17:50:42 by algultse          #+#    #+#             */
-/*   Updated: 2025/03/24 23:56:44 by algultse         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:36:59 by algultse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	PmergeMe::parseArguments(int argc, char **argv) {
 	if (argc < 2) {
 		throw std::runtime_error("at least one positive integer is required");
 	}
+	if (argc - 1 > MAX_INPUT_SIZE)
+		throw std::runtime_error("Error: too many numbers provided (limit is 100000)");
 
 	for (int i = 1; i < argc; ++i) {
 		std::string arg(argv[i]);
