@@ -20,6 +20,8 @@
 # include <cstdlib>
 # include <ctime>
 # include <iomanip>
+# include <algorithm>
+# include <limits>
 
 # define RESET "\e[0m"
 

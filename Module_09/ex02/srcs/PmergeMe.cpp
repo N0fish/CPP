@@ -36,15 +36,17 @@ bool	PmergeMe::isValidNumber(const std::string &str) const {
 	if (str.empty())
 		return (false);
 	for (std::size_t i = 0; i < str.length(); ++i) {
-		if (!std::isdigit(str[i]))
+		if (!std::isdigit(str[i])) {
 			return (false);
+		}
 	}
 	return (true);
 }
 
 void	PmergeMe::parseArguments(int argc, char **argv) {
-	if (argc < 2)
+	if (argc < 2) {
 		throw std::runtime_error("at least one positive integer is required");
+	}
 
 	for (int i = 1; i < argc; ++i) {
 		std::string arg(argv[i]);
@@ -69,24 +71,28 @@ void	PmergeMe::parseArguments(int argc, char **argv) {
 /* ******************************** DISPLAY ********************************* */
 
 void	PmergeMe::printBefore() const {
-	std::cout << "Before:\t";
+	std::cout << "🍏 Before:\t";
 	for (std::size_t i = 0; i < _vector.size(); ++i) {
-		std::cout << _vector[i] << " ";
+		std::cout << CYAN << _vector[i] << " ";
 	}
-	std::cout << std::endl;
+	std::cout << RESET << std::endl;
 }
 
 void	PmergeMe::printAfter() const {
-	std::cout << "After:\t";
+	std::cout << "🍎 After:\t";
 	for (std::size_t i = 0; i < _vecSorted.size(); ++i) {
-		std::cout << _vecSorted[i] << " ";
+		std::cout << BLUE ITALIC << _vecSorted[i] << " ";
 	}
-	std::cout << std::endl;
+	std::cout << RESET << std::endl;
 
-	std::cout << "Time to process a range of " << _vector.size()
-	          << " elements with std::vector : " << _vectorTime << " µs" << std::endl;
-	std::cout << "Time to process a range of " << _deque.size()
-	          << " elements with std::deque  : " << _dequeTime << " µs" << std::endl;
+	std::cout	<< "Time to process a range of " << _vector.size()
+	    		<< " elements with std::vector : " 
+				<< CYAN BOLD << _vectorTime << RESET << " µs"
+				<< std::endl;
+	std::cout	<< "Time to process a range of " << _deque.size()
+	        	<< " elements with std::deque  : "
+				<< BLUE BOLD << _dequeTime << RESET << " µs"
+				<< std::endl;
 }
 
 /* ******************************** PAIRING ********************************* */

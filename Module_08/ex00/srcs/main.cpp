@@ -36,7 +36,9 @@ void	testContainer(const std::string &name, T &container, int value) {
 	try {
 		typename T::iterator result = easyfind(container, value);
 		std::cout << "We are looking for: " << value << " → ";
-		printSuccess("Found: " + std::to_string(*result));
+		std::stringstream	ss;
+		ss << *result;
+		printSuccess("Found: " + ss.str());
 	} catch (const std::exception &e) {
 		std::cerr << "We are looking for: " << value << " → ";
 		printError(e.what());

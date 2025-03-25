@@ -15,8 +15,9 @@
 
 # include <string>
 # include <iostream>
-// # include <algorithm>
+# include <algorithm>
 # include <stdexcept>
+# include <sstream>
 
 # include <vector>
 # include <list>

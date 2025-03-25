@@ -19,6 +19,9 @@
 # include <sstream>
 # include <fstream>
 # include <cstdlib>
+# include <cfloat>
+# include <iomanip>
+# include <ctime>
 
 # define RESET "\e[0m"
 

@@ -59,7 +59,7 @@ void	BitcoinExchange::loadDatabase(const std::string& filename) {
 			}
 		}
 		double rate = static_cast<float>(std::atof(rateStr.c_str()));
-		if (rate < 0.0f || rate > 1000000.0f || std::isinf(rate)) {
+		if (rate < 0.0f || rate > 1000000.0f || rate > FLT_MAX) {
 			throw BadDatabaseFormatException();
 		}
 		if (_rates.find(date) != _rates.end()) {
@@ -145,8 +145,9 @@ std::string	BitcoinExchange::removeTrailingZeros(double number) {
 		size_t lastNonZero = str.find_last_not_of('0');
 		if (lastNonZero != std::string::npos) {
 			str.erase(lastNonZero + 1);
-			if (str.back() == '.')
-				str.erase(str.size() - 1);
+			if (str[str.length() - 1] == '.') {
+				str.erase(str.length() - 1);
+			}
 		}
 	}
 	return (str);
